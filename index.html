@@ -417,6 +417,39 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+    /* === POPUP KERANJANG DENGAN ANIMASI === */
+    #popup-cart {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 250px;
+      background: white;
+      box-shadow: 0 0 10px #f984f9;
+      padding: 10px;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      z-index: 999;
+    }
+    #popup-cart.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #popup-cart button {
+      background-color: #f984f9;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+    }
   </style>
 
   <script>
@@ -435,9 +468,9 @@
 <!-- Pop-up Selamat Datang -->
 <div id="welcome-popup">
   <div class="popup-content">
-    <h2>Selamat Datang!</h2>
-    <p>Halo, selamat datang di <strong>Atik Krudung</strong> <br>Anda puas, kami senang!</p>
-    <button onclick="tutupPopup()">Masuk</button>
+    <h2>Welcome!</h2>
+    <p>New collection <strong>10% OFF</strong> <br>Get a discount on all items in your next order</p>
+    <button onclick="tutupPopup()">Shop Now</button>
   </div>
 </div>
 
@@ -460,6 +493,30 @@
     <li><a href="#slider">Promo</a></li>
     <li><a href="#pembayaran">Pembayaran</a></li>
     <li><a href="#kontak">Kontak</a></li>
+    <li style="position: relative;">
+      <a href="javascript:void(0);" onclick="toggleCartPopup()" style="position: relative;">
+        🛒
+        <span id="cart-count" style="
+          position: absolute;
+          top: -5px;
+          right: -10px;
+          background-color: red;
+          color: white;
+          font-size: 12px;
+          border-radius: 50%;
+          padding: 2px 6px;
+          font-weight: bold;
+        ">0</span>
+      </a>
+
+  <!-- POPUP KERANJANG -->
+  <div id="popup-cart">
+    <div id="popup-cart-list" style="font-size: 0.9em;"></div>
+    <p id="popup-cart-total" style="font-weight: bold; color: #a120d1;">Total: Rp0</p>
+    <button onclick="keCheckout()">Lanjut ke Checkout</button>
+  </div>
+</li>
+
   </ul>
 </nav>
 
@@ -485,8 +542,8 @@
 
   <section id="profil-toko" class="tentang-hubungi fade-in fade-delay-1">
   <h2>Profil Toko</h2>
-  <p>Atik Kerudung adalah toko online terpercaya yang menyediakan berbagai jenis kerudung berkualitas tinggi dengan harga terjangkau. Kami mengutamakan kenyamanan, gaya, dan kepuasan pelanggan dalam setiap produk yang kami tawarkan.</p>
-  <p>Dengan pengalaman sejak 2020, kami telah melayani ribuan pelanggan dan terus berinovasi mengikuti tren fashion hijab terkini.</p>
+  <p>Atik Kerudung adalah brand lokal yang hadir untuk mempercantik hari-harimu dengan koleksi krudung yang modis, nyaman, dan berkualitas.</p>
+  <p>Berdiri sejak tahun 2015, kami telah berkomitmen menghadirkan pilihan hijab terbaik untuk para wanita indonesia yang ingin tampil anggun dan percaya diri di setiap kesempatan.</p>
 </section>
 
   <main>
@@ -494,7 +551,7 @@
       <div class="produk" data-id="1" data-nama="Bella Square" data-harga="15000">
         <h3 class="judul-produk">Bella Square</h3>
         <p>Rp15.000</p>
-        <div class="desc"><p>Deskripsi : Kerudung Bella Square dengan bahan lembut,ringan,mudah dibentuk dan nyaman dipakai sehari-hari.Tersedia puluhan warna cantik!</p></div>
+        <div class="desc"><p>Deskripsi : Kerudung segi empat berbahan voal premium ini hadir dengan tekstur ringan dan tidak licin, sangat cocok untuk dipakai hariam maupun acara formal.</p></div>
         <img class="foto-utama" src="img/bsutama.jpg" alt="Bella Square" />
         <div class="thumbnails">
           <img src="img/bsutama.jpg" class="thumbnail-img selected" alt="Bella 1" />
@@ -511,7 +568,7 @@
       <div class="produk" data-id="2" data-nama="Paris Jadul" data-harga="20000">
         <h3 class="judul-produk">Paris Jadul</h3>
         <p>Rp20.000</p>
-        <div class="desc"><p>Deskripsi : Kerudung Paris Jadul merk Farisah dengan bahan ringan,mudah dibentuk,cocok untuk tampilan klasik dan elegan.</p></div>
+        <div class="desc"><p>Deskripsi : Kerudung Paris Jadul merk Farisah dengan bahan katun paris tipis ringan,adem,dan mudah dibentuk. Dikenal sejak dulu karena kenyamanannya, kerudung ini jadi favorit banyak muslimah sejak dulu hingga sekarang.</p></div>
         <img class="foto-utama" src="img/pjutama.jpg" alt="Paris Jadul" />
         <div class="thumbnails">
           <img src="img/pjutama.jpg" class="thumbnail-img selected" alt="PJ 1" />
@@ -527,8 +584,15 @@
 
       <div class="produk" data-id="3" data-nama="Pashmina Viscose" data-harga="40000">
       <h3 class="judul-produk">Pashmina Viscose</h3>
-      <p>Rp40.000</p>
-      <div class="desc"><p>Deskripsi : Pashmina berbahan viscose premium,lembut,adem,bahan jatuh.cocok untuk tampil elegan tanpa ribet. nyaman dipakai seharian!</p></div>
+      <p>
+        <span style="text-decoration: line-through; color: gray; margin-right: 8px;">
+          Rp40.000
+        </span>
+        <span style="color: rgb(14, 14, 14); font-weight: bold;">
+          Rp36.000
+        </span>
+      </p>
+      <div class="desc"><p>Deskripsi : Pashmina berbahan viscose hadir dengan tekstur lembut dan ringan, memberikan kesan elegan tanpa usaha berlebihan. Cocok untuk kamu yang suka tampilan anggun tapi tetap elegan.</p></div>
       <img class="foto-utama" src="img/pv1.jpg" alt="Pashmina Viscose" />
       <div class="thumbnails">
         <img src="img/pv1.jpg" class="thumbnail-img selected" alt="Pashmina Viscose 1" />
@@ -543,7 +607,7 @@
     <div class="produk" data-id="4" data-nama="Pashmina Silk" data-harga="35000">
       <h3 class="judul-produk">Pashmina Silk</h3>
       <p>Rp35.000</p>
-      <div class="desc"><p>Deskripsi : Pashmina bahan kaos yang nyaman dan ringan dipakai.</p></div>
+      <div class="desc"><p>Deskripsi : Pashmina bahan silk hadir dengan tampilan yang mengilap dan lembut, menjadikannya pilihan sempurna untuk acara spesial maupun tampilan formal sehari-hari.</p></div>
       <img class="foto-utama" src="img/ps1.jpg" alt="Pashmina Silk" />
       <div class="thumbnails">
         <img src="img/ps1.jpg" class="thumbnail-img selected" alt="Pashmina Silk 1" />
@@ -558,7 +622,11 @@
 
     <section id="tentang-hubungi" class="fade-in fade-delay-3">
       <h2 id="kontak">Tentang Kami</h2>
-      <p>Atik Kerudung adalah toko online yang menyediakan beragam kerudung berkualitas dengan harga terjangkau. Kami berkomitmen memberikan produk terbaik dan pelayanan ramah untuk pelanggan kami.</p>
+      <p>Atik Kerudung berawal dari hobi menjahit dan kecintaan pemilik terhadap dunia fashion muslimah 
+          bermula dari pesenan teman dekat, usaha ini tumbuh menjadi brand lokal hijab yang nyaman, anggun dan mudah dipadukan.
+          Nilai utama adalah kejujuran, ketulusan, dan pelayanan yang ramah. Atik Kerudung hadir untuk membantu setiap muslimah
+          merasa percaya diri dengan hijab yang sesuai dengan gaya dan aktivitasnya. 
+          Bukan hanya menjual, kami ingin jadi bagian dari perjalanan indahmu dalam berhijab.</p>
 
       <h2>Hubungi Kami</h2>
       <div class="kontak-item">
@@ -589,7 +657,7 @@
     <section id="checkout" class="fade-in fade-delay-5">
       <h2>Checkout</h2>
       <div id="checkout-list"></div>
-      <p id="checkout-total">Total: Rp0</p>
+      <p id="checkout-total">Total : Rp0</p>
       <button onclick="konfirmasiCheckout()">Konfirmasi Pembayaran</button>
     </section>
   </main>
@@ -645,7 +713,46 @@
       total += item.harga * item.qty;
     });
     document.getElementById('checkout-total').textContent = `Total : Rp${total}`;
-  }
+  
+      // === SINKRONISASI POPUP KERANJANG ===
+    const popupList = document.getElementById("popup-cart-list");
+    const popupTotal = document.getElementById("popup-cart-total");
+    popupList.innerHTML = '';
+    let totalHarga = 0;
+
+    cart.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.style.marginBottom = '6px';
+      div.innerHTML = `
+        ${item.nama} x${item.qty} - Rp${item.harga * item.qty}
+        <button style="margin-left:5px;background:#f44336;border:none;color:white;padding:2px 6px;border-radius:5px;cursor:pointer;"
+          onclick="hapusItem(${index})">x</button>
+      `;
+      popupList.appendChild(div);
+      totalHarga += item.harga * item.qty;
+    });
+
+    popupTotal.textContent = `Total: Rp${totalHarga}`;
+
+    // Update angka di ikon keranjang
+    const cartCount = document.getElementById('cart-count');
+    let totalQty = 0;
+    cart.forEach(item => {
+        totalQty += item.qty;
+    });
+
+    cartCount.textContent = totalQty;
+
+    // Jika keranjang kosong, bisa sembunyikan angka atau set 0
+    if (totalQty === 0) {
+        cartCount.textContent = '0';
+        // Bisa juga sembunyikan badge:
+        // cartCount.style.display = 'none';
+    } else {
+        // Pastikan tampil
+        // cartCount.style.display = 'inline-block';
+    }
+    }
 
   function konfirmasiCheckout() {
     if (cart.length === 0) {
@@ -751,6 +858,21 @@
       }, 4000);
     }
   });
+
+    function toggleCartPopup() {
+      const popup = document.getElementById("popup-cart");
+      popup.classList.toggle("show");
+    }
+
+    function keCheckout() {
+      document.getElementById("popup-cart").classList.remove("show");
+      window.location.href = "#checkout";
+    }
+
+    function hapusItem(index) {
+      cart.splice(index, 1);
+      updateCheckout();
+    }
 </script>
 
 </body>
