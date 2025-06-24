@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Atik Krudung - Toko Online</title>
+  <style>
+    /* Animasi fade-in smooth */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-delay-1 { animation-delay: 0.2s; }
+    .fade-delay-2 { animation-delay: 0.4s; }
+    .fade-delay-3 { animation-delay: 0.6s; }
+    .fade-delay-4 { animation-delay: 0.8s; }
+    .fade-delay-5 { animation-delay: 1s; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff0ff;
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #f984f9;
+      padding: 20px;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+      user-select: none;
+    }
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 20px auto;
+      width: 90%;
+    }
+    .produk {
+      background-color: white;
+      box-shadow: 0 0 10px #f0b9f9;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 25px;
+    }
+    .produk h3 {
+      margin-top: 0;
+      color: #a120d1;
+      cursor: pointer;
+      user-select: none;
+    }
+    .deskripsi, .desc {
+      display: none;
+      margin-top: 5px;
+      color: #555;
+    }
+    .foto-utama {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px 0;
+      box-shadow: 0 0 5px #f984f9;
+    }
+    .thumbnails {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+    .thumbnail-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .thumbnail-img.selected {
+      border-color: #a120d1;
+    }
+    .btn-keranjang, .btn-beli {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 10px;
+      transition: background-color 0.3s;
+      color: white;
+    }
+    .btn-keranjang {
+      background-color: #dba0eb;
+    }
+    .btn-keranjang:hover {
+      background-color: #a120d1;
+    }
+    .btn-beli {
+      background-color: #f984f9;
+    }
+    .btn-beli:hover {
+      background-color: #c467cc;
+    }
+    #pembayaran {
+      background-color: white;
+      box-shadow: 0 0 10px #dd71ee;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 40px;
+    }
+    /* Tombol pembayaran horizontal & warna brand */
+    .pembayaran-btn {
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin: 5px;
+      border-radius: 5px;
+      width: auto;
+      min-width: 100px;
+      font-weight: bold;
+      text-align: center;
+      transition: opacity 0.3s ease;
+    }
+
+    .pembayaran-whatsapp {
+      background-color: #25d366; 
+    }
+
+    .pembayaran-qris {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .pembayaran-mandiri {
+      background-color: #0066cc;
+      color: white;
+    }
+
+    .pembayaran-btn:hover {
+      opacity: 0.8;
+    }
+    #info-pembayaran {
+      margin-top: 15px;
+      font-weight: bold;
+      min-height: 30px;
+      color: #a120d1;
+    }
+    #checkout {
+      background-color: white;
+      box-shadow: 0 0 10px #f0b9f9;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 40px;
+    }
+    #checkout-list {
+      margin-bottom: 15px;
+    }
+    #checkout-list > div {
+      border-bottom: 1px solid #f984f9;
+      padding: 8px 0;
+      font-weight: 600;
+    }
+    #checkout-total {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      color: #a120d1;
+    }
+    #checkout button {
+      background-color: #f984f9;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    #checkout button:hover {
+      background-color: #a120d1;
+    }
+    #popup-zoom {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #popup-zoom img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 15px white;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 12px 10px;
+      background-color: #f984f9;
+      color: white;
+      font-weight: bold;
+      user-select: none;
+      margin-top: auto;
+    }
+    /* Bagian tentang kami dan hubungi kami */
+    #tentang-hubungi {
+      background-color: white;
+      box-shadow: 0 0 10px #f0b9f9;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 40px;
+      color: #555;
+    }
+    #tentang-hubungi h2 {
+      color: #a120d1;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    .kontak-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 10px;
+      font-size: 1em;
+    }
+    .kontak-item img {
+      width: 24px;
+      height: 24px;
+    }
+    .kontak-item a {
+      color: #a120d1;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .kontak-item a:hover {
+      color: #f984f9;
+      text-decoration: underline;
+    }
+
+    /*Running Text dan Pembayaran*/
+    .running-text {
+      background-color: #fcd3ff;
+      padding: 10px 0;
+      color: #a120d1;
+      font-weight: bold;
+      font-size: 1.1em;
+      user-select: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .running-text marquee {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      letter-spacing: 1px;
+    }
+    .pembayaran-btn::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-size: cover;
+    }
+
+    /* Profil Toko */
+    #profil-toko {
+      background: #f5f4f5;
+      padding: 10px 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #101010;
+      font-size: 1.1em;
+      border-bottom: 2px solid #f984f9;
+    }
+
+    /* === MENU & SUBMENU === */
+    .navigasi {
+      background-color: #f984f9;
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      user-select: none;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu > li {
+      position: relative;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .menu a:hover {
+      background-color: #a120d1;
+      border-radius: 5px;
+    }
+
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #f984f9;
+      list-style: none;
+      padding: 0;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border-radius: 5px;
+    }
+
+    .menu li:hover .submenu {
+      display: block;
+    }
+
+    .submenu li a {
+      padding: 10px 15px;
+      white-space: nowrap;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      text-align: center;
+      margin: 15px 0;
+    }
+    .search-bar input {
+      padding: 8px;
+      width: 50%;
+      border: 2px solid #f984f9;
+      border-radius: 20px;
+      font-size: 1em;
+    }
+
+    /* Slider */
+    #slider {
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+      margin: 20px auto;
+    }
+    #slider img {
+      width: 100%;
+      height: auto;
+      display: none;
+    }
+    #slider img.active {
+      display: block;
+      animation: fade 1s;
+    }
+    @keyframes fade {
+      from {opacity: 0.3;}
+      to {opacity: 1;}
+    }
+
+    /* POP-UP Selamat Datang */
+    #welcome-popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 240, 255, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px #d182e6;
+    }
+
+    .popup-content h2 {
+      color: #a120d1;
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      background-color: #f984f9;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    function tampilkanPembayaran(metode) {
+      const info = {
+        whatsapp: "WhatsApp : 0878-7352-8852 (Atik Krudung)",
+        qris: "Scan QRIS di halaman checkout",
+        mandiri: "Bank Mandiri : 1570006455225 a.n MUSAEPI"
+      };
+      document.getElementById("info-pembayaran").innerText = info[metode] || "Pilih metode pembayaran";
+    }
+  </script>
+</head>
+<body>
+  <!-- Pop-up Welcome -->
+<!-- Pop-up Selamat Datang -->
+<div id="welcome-popup">
+  <div class="popup-content">
+    <h2>Selamat Datang!</h2>
+    <p>Halo, selamat datang di <strong>Atik Krudung</strong> <br>Anda puas, kami senang!</p>
+    <button onclick="tutupPopup()">Masuk</button>
+  </div>
+</div>
+
+  <!-- Profil Toko -->
+  <div id="profil-toko" class="fade-in fade-delay-1">
+  Selamat Datang di Toko Atik Krudung - Tampil Cantik, Nyaman dan Elegan
+  </div>
+
+  <!-- Navigasi Menu -->
+  <nav class="navigasi fade-in fade-delay-2">
+  <ul class="menu">
+    <li><a href="#">Beranda</a></li>
+    <li><a href="#profil-toko">Profil Toko</a></li>
+    <li>
+      <a href="#">Produk</a>
+      <ul class="submenu">
+        <li><a href="#produk-list">Semua Produk</a></li>
+      </ul>
+    </li>
+    <li><a href="#slider">Promo</a></li>
+    <li><a href="#pembayaran">Pembayaran</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+</nav>
+
+  <header class="fade-in fade-delay-3">
+  Atik Krudung
+  </header>
+
+  <div class="search-bar fade-in fade-delay-4">
+    <input type="text" id="searchInput" placeholder="Cari produk...">
+  </div>
+
+  <div class="running-text fade-in fade-delay-5">
+    <marquee>Bikin penampilanmu makin anggun bersama Atik Krudung</marquee>
+  </div>
+
+  <!-- SLIDER -->
+<div id="slider" class="fade-in fade-delay-3">
+  <img src="img/slider1.jpg" class="active" alt="Slide 1">
+  <img src="img/slider2.jpg" class="active" alt="Slide 2">
+  <img src="img/slider3.jpg" class="active" alt="Slide 3">
+  <img src="img/slider4.jpg" class="active" alt="Slide 4">
+</div>
+
+  <section id="profil-toko" class="tentang-hubungi fade-in fade-delay-1">
+  <h2>Profil Toko</h2>
+  <p>Atik Kerudung adalah toko online terpercaya yang menyediakan berbagai jenis kerudung berkualitas tinggi dengan harga terjangkau. Kami mengutamakan kenyamanan, gaya, dan kepuasan pelanggan dalam setiap produk yang kami tawarkan.</p>
+  <p>Dengan pengalaman sejak 2020, kami telah melayani ribuan pelanggan dan terus berinovasi mengikuti tren fashion hijab terkini.</p>
+</section>
+
+  <main>
+    <section id="produk-list" class="fade-in fade-delay-2">
+      <div class="produk" data-id="1" data-nama="Bella Square" data-harga="15000">
+        <h3 class="judul-produk">Bella Square</h3>
+        <p>Rp15.000</p>
+        <div class="desc"><p>Deskripsi : Kerudung Bella Square dengan bahan lembut,ringan,mudah dibentuk dan nyaman dipakai sehari-hari.Tersedia puluhan warna cantik!</p></div>
+        <img class="foto-utama" src="img/bsutama.jpg" alt="Bella Square" />
+        <div class="thumbnails">
+          <img src="img/bsutama.jpg" class="thumbnail-img selected" alt="Bella 1" />
+          <img src="img/bella1.jpg" class="thumbnail-img" alt="Bella 2" />
+          <img src="img/bella2.jpg" class="thumbnail-img" alt="Bella 3" />
+          <img src="img/bella3.jpg" class="thumbnail-img" alt="Bella 4" />
+          <img src="img/bella4.jpg" class="thumbnail-img" alt="Bella 5" />
+          <img src="img/bella5.jpg" class="thumbnail-img" alt="Bella 5" />
+        </div>
+        <button class="btn-keranjang">+ Keranjang</button>
+        <button class="btn-beli">Beli Sekarang</button>
+      </div>
+
+      <div class="produk" data-id="2" data-nama="Paris Jadul" data-harga="20000">
+        <h3 class="judul-produk">Paris Jadul</h3>
+        <p>Rp20.000</p>
+        <div class="desc"><p>Deskripsi : Kerudung Paris Jadul merk Farisah dengan bahan ringan,mudah dibentuk,cocok untuk tampilan klasik dan elegan.</p></div>
+        <img class="foto-utama" src="img/pjutama.jpg" alt="Paris Jadul" />
+        <div class="thumbnails">
+          <img src="img/pjutama.jpg" class="thumbnail-img selected" alt="PJ 1" />
+          <img src="img/pj1.jpg" class="thumbnail-img" alt="PJ 2" />
+          <img src="img/pj2.jpg" class="thumbnail-img" alt="PJ 3" />
+          <img src="img/pj3.jpg" class="thumbnail-img" alt="PJ 4" />
+          <img src="img/pj4.jpg" class="thumbnail-img" alt="PJ 5" />
+          <img src="img/pj5.jpg" class="thumbnail-img" alt="PJ 5" />
+        </div>
+        <button class="btn-keranjang">+ Keranjang</button>
+        <button class="btn-beli">Beli Sekarang</button>
+      </div>
+
+      <div class="produk" data-id="3" data-nama="Pashmina Viscose" data-harga="40000">
+      <h3 class="judul-produk">Pashmina Viscose</h3>
+      <p>Rp40.000</p>
+      <div class="desc"><p>Deskripsi : Pashmina berbahan viscose premium,lembut,adem,bahan jatuh.cocok untuk tampil elegan tanpa ribet. nyaman dipakai seharian!</p></div>
+      <img class="foto-utama" src="img/pv1.jpg" alt="Pashmina Viscose" />
+      <div class="thumbnails">
+        <img src="img/pv1.jpg" class="thumbnail-img selected" alt="Pashmina Viscose 1" />
+        <img src="img/pv2.jpg" class="thumbnail-img" alt="Pashmina Viscose 2" />
+        <img src="img/pv3.jpg" class="thumbnail-img" alt="Pashmina Viscose 3" />
+        <img src="img/pv4.jpg" class="thumbnail-img" alt="Pashmina Viscose 4" />
+      </div>
+      <button class="btn-keranjang">+ Keranjang</button>
+      <button class="btn-beli">Beli Sekarang</button>
+    </div>
+
+    <div class="produk" data-id="4" data-nama="Pashmina Silk" data-harga="35000">
+      <h3 class="judul-produk">Pashmina Silk</h3>
+      <p>Rp35.000</p>
+      <div class="desc"><p>Deskripsi : Pashmina bahan kaos yang nyaman dan ringan dipakai.</p></div>
+      <img class="foto-utama" src="img/ps1.jpg" alt="Pashmina Silk" />
+      <div class="thumbnails">
+        <img src="img/ps1.jpg" class="thumbnail-img selected" alt="Pashmina Silk 1" />
+        <img src="img/ps2.jpg" class="thumbnail-img" alt="Pashmina Silk 2" />
+        <img src="img/ps3.jpg" class="thumbnail-img" alt="Pashmina Silk 3" />
+        <img src="img/ps4.jpg" class="thumbnail-img" alt="Pashmina Silk 4" />
+      </div>
+      <button class="btn-keranjang">+ Keranjang</button>
+      <button class="btn-beli">Beli Sekarang</button>
+    </div>
+    </section>
+
+    <section id="tentang-hubungi" class="fade-in fade-delay-3">
+      <h2 id="kontak">Tentang Kami</h2>
+      <p>Atik Kerudung adalah toko online yang menyediakan beragam kerudung berkualitas dengan harga terjangkau. Kami berkomitmen memberikan produk terbaik dan pelayanan ramah untuk pelanggan kami.</p>
+
+      <h2>Hubungi Kami</h2>
+      <div class="kontak-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
+        <a href="mailto:atikkrudung@gmail.com" target="_blank">atikkrudung@gmail.com</a>
+      </div>
+      <div class="kontak-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone" />
+        <a href="tel:+6287873528852" target="_blank">+62 878-7352-8852</a>
+      </div>
+      <div class="kontak-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" />
+        <a href="https://instagram.com/atikkerudung" target="_blank">@atikkerudung</a>
+      </div>
+    </section>
+
+    <section id="pembayaran" class="fade-in fade-delay-4">
+      <h2>Pembayaran</h2>
+      <p>Pilih metode pembayaran:</p>
+      <div style="display: flex; flex-wrap: wrap;">
+        <button class="pembayaran-btn pembayaran-whatsapp" onclick="tampilkanPembayaran('whatsapp')">WhatsApp</button>
+        <button class="pembayaran-btn pembayaran-qris" onclick="tampilkanPembayaran('qris')">QRIS</button>
+        <button class="pembayaran-btn pembayaran-mandiri" onclick="tampilkanPembayaran('mandiri')">Bank Mandiri</button>
+      </div>
+      <p id="info-pembayaran" style="font-weight: bold; margin-top: 10px;"></p>
+    </section>
+
+    <section id="checkout" class="fade-in fade-delay-5">
+      <h2>Checkout</h2>
+      <div id="checkout-list"></div>
+      <p id="checkout-total">Total: Rp0</p>
+      <button onclick="konfirmasiCheckout()">Konfirmasi Pembayaran</button>
+    </section>
+  </main>
+
+  <div id="popup-zoom" onclick="hideZoom()">
+    <img src="" alt="Zoomed Image" />
+  </div>
+
+  <footer class="fade-in fade-delay-5">
+    &copy; 2025 Atik Krudung
+  </footer>
+
+  <script>
+  // Tutup Zoom
+  function hideZoom() {
+    document.getElementById('popup-zoom').style.display = 'none';
+  }
+
+  function tutupPopup() {
+    document.getElementById("welcome-popup").style.display = "none";
+  }
+
+  window.onload = function () {
+    document.getElementById("welcome-popup").style.display = "flex";
+  }
+
+  let cart = [];
+
+  function updateCheckout() {
+    const list = document.getElementById('checkout-list');
+    list.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+      const itemDiv = document.createElement('div');
+      const textSpan = document.createElement('span');
+      textSpan.textContent = `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`;
+      itemDiv.appendChild(textSpan);
+
+      const btnHapus = document.createElement('button');
+      btnHapus.textContent = 'Batal';
+      btnHapus.style.marginLeft = '10px';
+      btnHapus.style.backgroundColor = '#f44336';
+      btnHapus.style.color = 'white';
+      btnHapus.style.border = 'none';
+      btnHapus.style.borderRadius = '5px';
+      btnHapus.style.cursor = 'pointer';
+      btnHapus.onclick = () => {
+        cart.splice(index, 1);
+        updateCheckout();
+      };
+      itemDiv.appendChild(btnHapus);
+      list.appendChild(itemDiv);
+      total += item.harga * item.qty;
+    });
+    document.getElementById('checkout-total').textContent = `Total : Rp${total}`;
+  }
+
+  function konfirmasiCheckout() {
+    if (cart.length === 0) {
+      alert('Keranjang kosong.');
+      return;
+    }
+    alert('Terima kasih telah berbelanja! Silakan lanjutkan ke pembayaran.');
+    cart = [];
+    updateCheckout();
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // === Pop-up Selamat Datang ===
+    if (!localStorage.getItem("popupShown")) {
+      document.getElementById("welcome-popup").classList.add("show");
+    }
+
+    // === Zoom Gambar ===
+    document.querySelectorAll('.produk').forEach(produk => {
+      const fotoUtama = produk.querySelector('.foto-utama');
+      const thumbnails = produk.querySelectorAll('.thumbnail-img');
+
+      thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+          fotoUtama.src = thumbnail.src;
+          thumbnails.forEach(t => t.classList.remove('selected'));
+          thumbnail.classList.add('selected');
+        });
+      });
+
+      fotoUtama.addEventListener('click', () => {
+        const popup = document.getElementById('popup-zoom');
+        popup.style.display = 'flex';
+        popup.querySelector('img').src = fotoUtama.src;
+      });
+    });
+
+    // === Toggle Deskripsi ===
+    document.querySelectorAll('.judul-produk').forEach(judul => {
+      judul.addEventListener('click', () => {
+        const produk = judul.closest('.produk');
+        const deskripsi = produk.querySelector('.desc');
+        if (deskripsi) {
+          deskripsi.style.display = deskripsi.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+ 
+    // === Search Produk ===
+    const searchInput = document.getElementById("searchInput");
+    const produkList = document.querySelectorAll(".produk");
+    searchInput.addEventListener("input", function () {
+      const keyword = this.value.toLowerCase();
+      produkList.forEach(produk => {
+        const nama = produk.getAttribute("data-nama").toLowerCase();
+        produk.style.display = nama.includes(keyword) ? "block" : "none";
+      });
+    });
+
+    // Reset search on load
+    searchInput.value = '';
+    produkList.forEach(p => p.style.display = 'block');
+
+    // === Tambah ke Keranjang ===
+    document.querySelectorAll('.btn-keranjang').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const produk = btn.closest('.produk');
+        const id = produk.getAttribute('data-id');
+        const nama = produk.getAttribute('data-nama');
+        const harga = parseInt(produk.getAttribute('data-harga'));
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+          existing.qty++;
+        } else {
+          cart.push({ id, nama, harga, qty: 1 });
+        }
+        updateCheckout();
+      });
+    });
+
+    // === Beli Sekarang ===
+    document.querySelectorAll('.btn-beli').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const produk = btn.closest('.produk');
+        const id = produk.getAttribute('data-id');
+        const nama = produk.getAttribute('data-nama');
+        const harga = parseInt(produk.getAttribute('data-harga'));
+        cart = [{ id, nama, harga, qty: 1 }];
+        updateCheckout();
+        window.location.href = "#checkout";
+      });
+    });
+
+    // === SLIDER ===
+    let current = 0;
+    const slides = document.querySelectorAll("#slider img");
+    if (slides.length > 0) {
+      slides[0].classList.add("active");
+      setInterval(() => {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+      }, 4000);
+    }
+  });
+</script>
+
+</body>
+</html>
