@@ -812,10 +812,11 @@
       alert('Keranjang kosong.');
       return;
     }
-    alert('Terima kasih telah berbelanja! Silakan lanjutkan ke pembayaran.');
-    cart = [];
-    updateCheckout();
-  }
+    const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+    document.getElementById('popup-total').textContent = `Total: Rp${total}`;
+    document.getElementById('popup-konfirmasi').style.display = 'flex';
+}
+
 
   window.addEventListener("DOMContentLoaded", () => {
     // === Pop-up Selamat Datang ===
@@ -952,14 +953,6 @@
       const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
       const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
 
-      if (metode === "whatsapp") {
-        const linkWA = `https://wa.me/6287873528852?text=${encodeURIComponent(pesan)}`;
-        window.location.href = linkWA;
-      } else if (metode === "mandiri") {
-        alert("Silakan transfer ke Bank Mandiri: 1570006455225 a.n MUSAEPI");
-      }
-
-      // Optional: Simpan ke database
       const formData = new FormData();
       formData.append('nama', nama);
       formData.append('no_wa', no_wa);
@@ -974,6 +967,15 @@
         cart = [];
         updateCheckout();
         document.getElementById('popup-konfirmasi').style.display = 'none';
+
+        if (metode === "whatsapp") {
+          const linkWA = `https://wa.me/6287873528852?text=${encodeURIComponent(pesan)}`;
+          setTimeout(() => {
+            window.location.href = linkWA;
+          }, 500); // Tunggu 0.5 detik supaya data ke database pasti masuk
+        } else if (metode === "mandiri") {
+          alert("Silakan transfer ke Bank Mandiri: 1570006455225 a.n MUSAEPI");
+        }
       });
     }
 
@@ -981,37 +983,6 @@
       document.getElementById('popup-konfirmasi').style.display = 'none';
     }
 
-    function simpanPesanan() {
-      if (cart.length === 0) {
-        alert('Keranjang masih kosong!');
-        return;
-    }
-
-      const nama = prompt("Masukkan Nama Anda:");
-      const no_wa = prompt("Masukkan Nomor WhatsApp Anda:");
-      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
-      const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
-
-      const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
-
-      const noToko = "6287873528852"; // Ganti pakai nomor WA toko kamu (format internasional, awali 62)
-      const linkWA = `https://wa.me/${noToko}?text=${encodeURIComponent(pesan)}`;
-
-      // Optional: Simpan ke database sebelum ke WA
-      const formData = new FormData();
-      formData.append('nama', nama);
-      formData.append('no_wa', no_wa);
-      formData.append('produk', JSON.stringify(cart));
-      formData.append('total', total);
-
-      fetch('proses_pesanan.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(() => {
-        window.location.href = linkWA;
-      });
-    }
 
 </script>
 
