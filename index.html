@@ -138,8 +138,8 @@
       background-color: #25d366; 
     }
 
-    .pembayaran-qris {
-      background-color: #000;
+    .pembayaran-instagram {
+      background-color: #550c45;
       color: #fff;
     }
 
@@ -484,15 +484,16 @@
   <script>
     function tampilkanPembayaran(metode) {
       const info = {
-        whatsapp: "WhatsApp : 0878-7352-8852 (Atik Krudung)",
-        qris: "Scan QRIS di halaman checkout",
-        mandiri: "Bank Mandiri : 1570006455225 a.n MUSAEPI"
+        whatsapp : "WhatsApp : 0878-7352-8852 (Atik Krudung)",
+        instagram : "Scan QRIS di halaman checkout",
+        mandiri : "Bank Mandiri : 1570006455225 a.n MUSAEPI"
       };
       document.getElementById("info-pembayaran").innerText = info[metode] || "Pilih metode pembayaran";
     }
   </script>
 </head>
 <body>
+
   <!-- Pop-up Welcome -->
 <!-- Pop-up Selamat Datang -->
 <div id="welcome-popup">
@@ -517,7 +518,10 @@
     <li>
       <a href="#">Produk</a>
       <ul class="submenu">
-        <li><a href="#produk-list">Semua Produk</a></li>
+        <li><a href="#bella-square">Bella Square</a></li>
+        <li><a href="#paris-jadul">Paris Jadul</a></li>
+        <li><a href="#pashmina-viscose">Pashmina Viscose</a></li>
+        <li><a href="#pashmina-silk">Pashmina Silk</a></li>
       </ul>
     </li>
     <li><a href="#slider">Promo</a></li>
@@ -578,7 +582,7 @@
 
   <main>
     <section id="produk-list" class="fade-in fade-delay-2">
-      <div class="produk" data-id="1" data-nama="Bella Square" data-harga="15000">
+      <div id="bella-square" class="produk" data-id="1" data-nama="Bella Square" data-harga="15000">
         <h3 class="judul-produk">Bella Square</h3>
         <p>Rp15.000</p>
         <div class="desc"><p>Deskripsi : Kerudung segi empat berbahan voal premium ini hadir dengan tekstur ringan dan tidak licin, sangat cocok untuk dipakai hariam maupun acara formal.</p></div>
@@ -595,7 +599,7 @@
         <button class="btn-beli">Beli Sekarang</button>
       </div>
 
-      <div class="produk" data-id="2" data-nama="Paris Jadul" data-harga="20000">
+      <div id="paris-jadul" class="produk" data-id="2" data-nama="Paris Jadul" data-harga="20000">
         <h3 class="judul-produk">Paris Jadul</h3>
         <p>Rp20.000</p>
         <div class="desc"><p>Deskripsi : Kerudung Paris Jadul merk Farisah dengan bahan katun paris tipis ringan,adem,dan mudah dibentuk. Dikenal sejak dulu karena kenyamanannya, kerudung ini jadi favorit banyak muslimah sejak dulu hingga sekarang.</p></div>
@@ -612,7 +616,7 @@
         <button class="btn-beli">Beli Sekarang</button>
       </div>
 
-      <div class="produk" data-id="3" data-nama="Pashmina Viscose" data-harga="40000">
+      <div id="pashmina-viscose" class="produk" data-id="3" data-nama="Pashmina Viscose" data-harga="40000">
       <h3 class="judul-produk">Pashmina Viscose</h3>
       <p>
         <span style="text-decoration: line-through; color: gray; margin-right: 8px;">
@@ -634,7 +638,7 @@
       <button class="btn-beli">Beli Sekarang</button>
     </div>
 
-    <div class="produk" data-id="4" data-nama="Pashmina Silk" data-harga="35000">
+    <div id="pashmina-silk" class="produk" data-id="4" data-nama="Pashmina Silk" data-harga="35000">
       <h3 class="judul-produk">Pashmina Silk</h3>
       <p>Rp35.000</p>
       <div class="desc"><p>Deskripsi : Pashmina bahan silk hadir dengan tampilan yang mengilap dan lembut, menjadikannya pilihan sempurna untuk acara spesial maupun tampilan formal sehari-hari.</p></div>
@@ -661,7 +665,7 @@
       <h2>Hubungi Kami</h2>
       <div class="kontak-item">
         <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
-        <a href="mailto:atikkrudung@gmail.com" target="_blank">atikkrudung@gmail.com</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=atikkrudung@gmail.com&su=Pertanyaan%20Produk%20Atik%20Kerudung" target="_blank">atikkrudung@gmail.com</a>
       </div>
       <div class="kontak-item">
         <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone" />
@@ -669,7 +673,7 @@
       </div>
       <div class="kontak-item">
         <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" />
-        <a href="https://instagram.com/atikkerudung" target="_blank">@atikkerudung</a>
+        <a href="https://www.instagram.com/atikupi?igsh=Z3RnYTNyZTAxeXk1" target="_blank">@atikupi</a>
       </div>
     </section>
 
@@ -677,8 +681,7 @@
       <h2>Pembayaran</h2>
       <p>Pilih metode pembayaran:</p>
       <div style="display: flex; flex-wrap: wrap;">
-        <button class="pembayaran-btn pembayaran-whatsapp" onclick="tampilkanPembayaran('whatsapp')">WhatsApp</button>
-        <button class="pembayaran-btn pembayaran-qris" onclick="tampilkanPembayaran('qris')">QRIS</button>
+        <a class="pembayaran-btn pembayaran-whatsapp" href="https://wa.me/6287873528852" target="_blank">WhatsApp</a>
         <button class="pembayaran-btn pembayaran-mandiri" onclick="tampilkanPembayaran('mandiri')">Bank Mandiri</button>
       </div>
       <p id="info-pembayaran" style="font-weight: bold; margin-top: 10px;"></p>
@@ -694,6 +697,26 @@
 
   <div id="popup-zoom" onclick="hideZoom()">
     <img src="" alt="Zoomed Image" />
+  </div>
+
+    <!-- POPUP KONFIRMASI PEMBAYARAN -->
+  <div id="popup-konfirmasi" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;" class="fade-in fade-delay-5">
+    <div style="background:white; padding:30px; border-radius:10px; text-align:center; max-width:300px;">
+      <h3 style="color:#a120d1;">Konfirmasi Pembayaran</h3>
+      <p id="popup-total">Total: Rp0</p>
+
+      <input type="text" id="nama-pelanggan" placeholder="Nama Anda" style="width:90%; padding:8px; margin-top:10px;"><br><br>
+      <input type="text" id="wa-pelanggan" placeholder="Nomor WhatsApp" style="width:90%; padding:8px;"><br><br>
+
+      <label for="metode-pembayaran">Pilih metode pembayaran:</label><br>
+      <select id="metode-pembayaran" style="padding:8px; margin-top:10px;">
+        <option value="whatsapp">WhatsApp</option>
+        <option value="mandiri">Bank Mandiri</option>
+      </select><br><br>
+      <button onclick="selesaikanPembayaran()" style="background:#f984f9; color:white; padding:10px 20px; border:none; border-radius:10px;">Bayar Sekarang</button>
+      <br><br>
+      <button onclick="tutupKonfirmasi()" style="background:#f5f2f2; padding:5px 10px; border:none; border-radius:8px;">Batal</button>
+    </div>
   </div>
 
   <footer class="fade-in fade-delay-5">
@@ -878,10 +901,10 @@
 
     // === SLIDER ===
     let current = 0;
-    const slides = document.querySelectorAll("#slider img");
-    if (slides.length > 0) {
-      slides[0].classList.add("active");
-      setInterval(() => {
+      const slides = document.querySelectorAll("#slider img");
+        if (slides.length > 0) {
+        slides[0].classList.add("active");
+        setInterval(() => {
         slides[current].classList.remove("active");
         current = (current + 1) % slides.length;
         slides[current].classList.add("active");
@@ -903,6 +926,92 @@
       cart.splice(index, 1);
       updateCheckout();
     }
+
+    function konfirmasiCheckout() {
+      if (cart.length === 0) {
+        alert('Keranjang kosong.');
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+      document.getElementById('popup-total').textContent = `Total: Rp${total}`;
+      document.getElementById('popup-konfirmasi').style.display = 'flex';
+    }
+
+    function selesaikanPembayaran() {
+      const nama = document.getElementById('nama-pelanggan').value.trim();
+      const no_wa = document.getElementById('wa-pelanggan').value.trim();
+      const metode = document.getElementById('metode-pembayaran').value;
+
+      if (!nama || !no_wa) {
+        alert("Harap isi nama dan nomor WhatsApp.");
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+      const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
+      const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
+
+      if (metode === "whatsapp") {
+        const linkWA = `https://wa.me/6287873528852?text=${encodeURIComponent(pesan)}`;
+        window.location.href = linkWA;
+      } else if (metode === "mandiri") {
+        alert("Silakan transfer ke Bank Mandiri: 1570006455225 a.n MUSAEPI");
+      }
+
+      // Optional: Simpan ke database
+      const formData = new FormData();
+      formData.append('nama', nama);
+      formData.append('no_wa', no_wa);
+      formData.append('produk', JSON.stringify(cart));
+      formData.append('total', total);
+
+      fetch('proses_pesanan.php', {
+        method: 'POST',
+        body: formData
+      });
+
+      cart = [];
+      updateCheckout();
+      document.getElementById('popup-konfirmasi').style.display = 'none';
+    }
+
+    function tutupKonfirmasi() {
+      document.getElementById('popup-konfirmasi').style.display = 'none';
+    }
+
+    function simpanPesanan() {
+      if (cart.length === 0) {
+        alert('Keranjang masih kosong!');
+        return;
+    }
+
+      const nama = prompt("Masukkan Nama Anda:");
+      const no_wa = prompt("Masukkan Nomor WhatsApp Anda:");
+      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+      const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
+
+      const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
+
+      const noToko = "6287873528852"; // Ganti pakai nomor WA toko kamu (format internasional, awali 62)
+      const linkWA = `https://wa.me/${noToko}?text=${encodeURIComponent(pesan)}`;
+
+      // Optional: Simpan ke database sebelum ke WA
+      const formData = new FormData();
+      formData.append('nama', nama);
+      formData.append('no_wa', no_wa);
+      formData.append('produk', JSON.stringify(cart));
+      formData.append('total', total);
+
+      fetch('proses_pesanan.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(() => {
+        window.location.href = linkWA;
+      });
+    }
+
 </script>
 
 </body>
