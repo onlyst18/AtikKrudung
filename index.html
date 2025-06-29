@@ -969,11 +969,12 @@
       fetch('proses_pesanan.php', {
         method: 'POST',
         body: formData
+      })
+      .then(() => {
+        cart = [];
+        updateCheckout();
+        document.getElementById('popup-konfirmasi').style.display = 'none';
       });
-
-      cart = [];
-      updateCheckout();
-      document.getElementById('popup-konfirmasi').style.display = 'none';
     }
 
     function tutupKonfirmasi() {
