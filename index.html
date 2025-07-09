@@ -773,8 +773,8 @@
       <h3 style="color:#a120d1;">Konfirmasi Pembayaran</h3>
       <p id="popup-total">Total: Rp0</p>
 
-      <input type="text" id="nama-pelanggan" placeholder="Nama Anda" style="width:90%; padding:8px; margin-top:10px;"><br><br>
-      <input type="text" id="wa-pelanggan" placeholder="Nomor WhatsApp" style="width:90%; padding:8px;"><br><br>
+      <input type="text" id="nama-pelanggan" name="nama" placeholder="Nama Anda" style="width:90%; padding:8px; margin-top:10px;"><br><br>
+      <input type="text" id="wa-pelanggan" name="no_wa" placeholder="Nomor WhatsApp" style="width:90%; padding:8px;"><br><br>
 
       <label for="metode-pembayaran">Pilih metode pembayaran:</label><br>
       <select id="metode-pembayaran" style="padding:8px; margin-top:10px;">
@@ -1059,15 +1059,20 @@
 
       const nama = prompt("Masukkan Nama Anda:");
       const no_wa = prompt("Masukkan Nomor WhatsApp Anda:");
+
+      if (!nama || !no_wa) {
+        alert("Nama dan Nomor WA wajib diisi.");
+        return;
+      }
+
       const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
       const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
 
       const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
-
-      const noToko = "6287873528852"; // Ganti pakai nomor WA toko kamu (format internasional, awali 62)
+      const noToko = "6287873528852";
       const linkWA = `https://wa.me/${noToko}?text=${encodeURIComponent(pesan)}`;
 
-      // Optional: Simpan ke database sebelum ke WA
+      // Kirim data ke PHP
       const formData = new FormData();
       formData.append('nama', nama);
       formData.append('no_wa', no_wa);
@@ -1078,11 +1083,15 @@
         method: 'POST',
         body: formData
       })
-      .then(() => {
+      .then(res => res.text())
+      .then(result => {
+        console.log("RESPON PHP:", result);
         window.location.href = linkWA;
+      })
+      .catch(err => {
+        console.error("GAGAL FETCH:", err);
       });
     }
-
 </script>
 
 </body>
