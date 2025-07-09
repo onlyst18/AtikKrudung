@@ -453,8 +453,8 @@
       top: 40px;
       right: 0;
       width: 250px;
-      background: white;
-      box-shadow: 0 0 10px #f984f9;
+      background: rgb(250, 247, 249);
+      box-shadow: 0 0 10px #eb0beb;
       padding: 10px;
       border-radius: 10px;
       opacity: 0;
@@ -469,7 +469,7 @@
       pointer-events: auto;
     }
     #popup-cart button {
-      background-color: #f984f9;
+      background-color: #f605f6ab;
       color: white;
       border: none;
       padding: 8px 15px;
@@ -478,6 +478,41 @@
       cursor: pointer;
       width: 100%;
       margin-top: 8px;
+    }
+    .keranjang-float {
+      position: fixed;
+      top: 0.5rem;
+      right: 1rem;
+      background-color: #881188;
+      color: rgb(251, 248, 248);
+      padding: 10px 14px;
+      border-radius: 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .keranjang-float #cart-count {
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 8px;
+      font-size: 0.8em;
+      margin-left: 6px;
+      font-weight: bold;
+    }
+    #popup-cart {
+      color: #333 !important; /* Warna teks untuk nama dan jumlah barang */
+    }
+
+    #popup-cart-list {
+      color: #333 !important;
+    }
+
+    #popup-cart-list button {
+      color: white;
     }
   </style>
 
@@ -504,6 +539,16 @@
   </div>
 </div>
 
+<!-- Keranjang Floating -->
+<div class="keranjang-float" onclick="toggleCartPopup()">
+  🛒 <span id="cart-count">0</span>
+  <div id="popup-cart">
+    <div id="popup-cart-list" style="font-size: 0.9em;"></div>
+    <p id="popup-cart-total" style="font-weight: bold; color: #a120d1;">Total: Rp0</p>
+    <button onclick="keCheckout()">Lanjut ke Checkout</button>
+  </div>
+</div>
+
   <!-- HEADER LOGO + JUDUL -->
 <div class="header-toko">
   <img src="img/logoatik.png" alt="Logo Atik Kerudung" class="logo-toko">
@@ -527,28 +572,6 @@
     <li><a href="#slider">Promo</a></li>
     <li><a href="#pembayaran">Pembayaran</a></li>
     <li><a href="#kontak">Kontak</a></li>
-    <li style="position: relative;">
-      <a href="javascript:void(0);" onclick="toggleCartPopup()" style="position: relative;">
-        🛒
-        <span id="cart-count" style="
-          position: absolute;
-          top: -5px;
-          right: -10px;
-          background-color: red;
-          color: rgb(249, 247, 247);
-          font-size: 12px;
-          border-radius: 50%;
-          padding: 2px 6px;
-          font-weight: bold;
-        ">0</span>
-      </a>
-
-  <!-- POPUP KERANJANG -->
-  <div id="popup-cart">
-    <div id="popup-cart-list" style="font-size: 0.9em;"></div>
-    <p id="popup-cart-total" style="font-weight: bold; color: #a120d1;">Total: Rp0</p>
-    <button onclick="keCheckout()">Lanjut ke Checkout</button>
-  </div>
 </li>
 
   </ul>
@@ -731,10 +754,13 @@
 
   function tutupPopup() {
     document.getElementById("welcome-popup").style.display = "none";
+    document.querySelector(".keranjang-float").style.display = "flex";
   }
 
   window.onload = function () {
     document.getElementById("welcome-popup").style.display = "flex";
+    document.getElementById("popup-cart").classList.remove("show");
+    document.querySelector(".keranjang-float").style.display = "none";
   }
 
   let cart = [];
@@ -812,11 +838,10 @@
       alert('Keranjang kosong.');
       return;
     }
-    const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
-    document.getElementById('popup-total').textContent = `Total: Rp${total}`;
-    document.getElementById('popup-konfirmasi').style.display = 'flex';
-}
-
+    alert('Terima kasih telah berbelanja! Silakan lanjutkan ke pembayaran.');
+    cart = [];
+    updateCheckout();
+  }
 
   window.addEventListener("DOMContentLoaded", () => {
     // === Pop-up Selamat Datang ===
@@ -953,6 +978,51 @@
       const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
       const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
 
+      if (metode === "whatsapp") {
+        const linkWA = `https://wa.me/6287873528852?text=${encodeURIComponent(pesan)}`;
+        window.location.href = linkWA;
+      } else if (metode === "mandiri") {
+        alert("Silakan transfer ke Bank Mandiri: 1570006455225 a.n MUSAEPI");
+      }
+
+      // Optional: Simpan ke database
+      const formData = new FormData();
+      formData.append('nama', nama);
+      formData.append('no_wa', no_wa);
+      formData.append('produk', JSON.stringify(cart));
+      formData.append('total', total);
+
+      fetch('proses_pesanan.php', {
+        method: 'POST',
+        body: formData
+      });
+
+      cart = [];
+      updateCheckout();
+      document.getElementById('popup-konfirmasi').style.display = 'none';
+    }
+
+    function tutupKonfirmasi() {
+      document.getElementById('popup-konfirmasi').style.display = 'none';
+    }
+
+    function simpanPesanan() {
+      if (cart.length === 0) {
+        alert('Keranjang masih kosong!');
+        return;
+    }
+
+      const nama = prompt("Masukkan Nama Anda:");
+      const no_wa = prompt("Masukkan Nomor WhatsApp Anda:");
+      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
+      const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
+
+      const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
+
+      const noToko = "6287873528852"; // Ganti pakai nomor WA toko kamu (format internasional, awali 62)
+      const linkWA = `https://wa.me/${noToko}?text=${encodeURIComponent(pesan)}`;
+
+      // Optional: Simpan ke database sebelum ke WA
       const formData = new FormData();
       formData.append('nama', nama);
       formData.append('no_wa', no_wa);
@@ -964,25 +1034,9 @@
         body: formData
       })
       .then(() => {
-        cart = [];
-        updateCheckout();
-        document.getElementById('popup-konfirmasi').style.display = 'none';
-
-        if (metode === "whatsapp") {
-          const linkWA = `https://wa.me/6287873528852?text=${encodeURIComponent(pesan)}`;
-          setTimeout(() => {
-            window.location.href = linkWA;
-          }, 500); // Tunggu 0.5 detik supaya data ke database pasti masuk
-        } else if (metode === "mandiri") {
-          alert("Silakan transfer ke Bank Mandiri: 1570006455225 a.n MUSAEPI");
-        }
+        window.location.href = linkWA;
       });
     }
-
-    function tutupKonfirmasi() {
-      document.getElementById('popup-konfirmasi').style.display = 'none';
-    }
-
 
 </script>
 
