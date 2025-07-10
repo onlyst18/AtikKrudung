@@ -281,6 +281,23 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .header-toko {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .judul-toko {
+        font-size: 24px;
+        text-align: center;
+      }
+
+      .logo-toko {
+        height: 60px;
+      }
+    }
+
     /*Running Text dan Pembayaran*/
     .running-text {
       background-color: #fcd3ff;
@@ -386,10 +403,23 @@
     }
     .search-bar input {
       padding: 8px;
-      width: 50%;
+      width: 80%;
+      max-width: 300px;
       border: 2px solid #f984f9;
       border-radius: 20px;
       font-size: 1em;
+    }
+
+    @media (max-width: 768px) {
+      .search-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .search-bar button {
+        margin-top: 10px;
+      }
     }
 
     /* Slider */
@@ -504,6 +534,16 @@
       margin-left: 6px;
       font-weight: bold;
     }
+
+    @media (max-width: 768px) {
+      .keranjang-float {
+        top: 70px;
+        right: 10px;
+        font-size: 0.9em;
+        padding: 8px 12px;
+      }
+    }
+
     #popup-cart {
       color: #333 !important; /* Warna teks untuk nama dan jumlah barang */
     }
@@ -519,6 +559,14 @@
     .tampil-aktif {
       display: block !important;
     }
+    @media (max-width: 768px) {
+      .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+
   </style>
 
   <script>
