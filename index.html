@@ -4,52 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  
-  <!-- SEO Atik Krudung -->
-  <title>Atik Krudung - Toko Kerudung Kekinian, Elegan & Terjangkau</title>
-  <meta name="description" content="Atik Krudung menyediakan kerudung kekinian dengan harga terjangkau, bahan nyaman, dan desain elegan. Cek koleksi terbaru kami sekarang.">
-  <meta name="keywords" content="Atik Krudung, kerudung kekinian, toko kerudung online, hijab modern, kerudung murah, hijab Cikarang">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="img/logoatik.png" type="image/png">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Atik Krudung - Toko Kerudung Kekinian, Elegan & Terjangkau">
-  <meta property="og:description" content="Cek koleksi kerudung terbaru dari Atik Krudung dengan harga terjangkau dan bahan nyaman.">
-  <meta property="og:image" content="https://onlyst18.github.io/AtikKrudung/img/logoatik.png">
-  <meta property="og:url" content="https://onlyst18.github.io/AtikKrudung/">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Atik Krudung - Toko Kerudung Kekinian, Elegan & Terjangkau">
-  <meta name="twitter:description" content="Cek koleksi kerudung terbaru dari Atik Krudung dengan harga terjangkau dan bahan nyaman.">
-  <meta name="twitter:image" content="https://onlyst18.github.io/AtikKrudung/img/logoatik.png">
-
-  <!-- Schema Markup JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Store",
-    "name": "Atik Krudung",
-    "image": "https://onlyst18.github.io/AtikKrudung/img/logoatik.png",
-    "description": "Toko kerudung kekinian dengan harga terjangkau dan bahan nyaman.",
-    "url": "https://onlyst18.github.io/AtikKrudung/",
-    "telephone": "+6287873528852",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Cikarang",
-      "addressRegion": "Jawa Barat",
-      "addressCountry": "ID"
-    },
-    "email": "atikkrudung@gmail.com",
-    "sameAs": [
-      "mailto:atikkrudung@gmail.com",
-      "tel:+6287873528852",
-      "https://www.instagram.com/atikupi"
-    ]
-  }
-</script>
+  <title>Atik Krudung - Toko Online</title>
   <style>
     /* Animasi fade-in smooth */
     .fade-in {
@@ -350,13 +305,14 @@
 
     /* Profil Toko */
     #Profil-toko {
-      background: #f5f4f5;
-      padding: 10px 20px;
-      text-align: center;
-      font-weight: bold;
+      background-color: white;
+      box-shadow: 0 0 10px #f0b9f9;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 25px;
       color: #101010;
       font-size: 1.1em;
-      border-bottom: 2px solid #f984f9;
+      text-align: center;
     }
 
     /* === MENU & SUBMENU === */
@@ -559,6 +515,98 @@
     #popup-cart-list button {
       color: white;
     }
+
+    .tampil-aktif {
+      display: block !important;
+    }
+
+    @media (max-width: 768px) {
+    .menu {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .submenu {
+      position: relative;
+      top: 0;
+      box-shadow: none;
+    }
+
+    .submenu li a {
+      padding: 10px 20px;
+    }
+
+    .search-bar input {
+      width: 90%;
+    }
+
+    .produk {
+      padding: 10px;
+    }
+
+    .thumbnails {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .thumbnail-img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .keranjang-float {
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 1em;
+      padding: 8px 12px;
+    }
+
+    #popup-cart {
+      width: 90%;
+      right: 5%;
+    }
+
+    .header-toko {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .logo-toko {
+      margin: 0 0 10px 0;
+    }
+
+    .judul-toko {
+      font-size: 1.5em;
+    }
+
+    #checkout button,
+    .btn-keranjang,
+    .btn-beli {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .running-text marquee {
+      font-size: 0.9em;
+    }
+
+    #tentang-hubungi {
+      padding: 10px;
+    }
+
+    .kontak-item {
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 0.95em;
+    }
+
+    .kontak-item img {
+      margin-bottom: 5px;
+    }
+  }
+
   </style>
 
   <script>
@@ -628,6 +676,7 @@
 
   <div class="search-bar fade-in fade-delay-4">
     <input type="text" id="searchInput" placeholder="Cari produk...">
+    <button id="searchBtn" style="padding: 9px 18px; margin-left: 10px; background-color: #f984f9; color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer;">Cari</button>
   </div>
 
   <div class="running-text fade-in fade-delay-5">
@@ -773,8 +822,8 @@
       <h3 style="color:#a120d1;">Konfirmasi Pembayaran</h3>
       <p id="popup-total">Total: Rp0</p>
 
-      <input type="text" id="nama-pelanggan" name="nama" placeholder="Nama Anda" style="width:90%; padding:8px; margin-top:10px;"><br><br>
-      <input type="text" id="wa-pelanggan" name="no_wa" placeholder="Nomor WhatsApp" style="width:90%; padding:8px;"><br><br>
+      <input type="text" id="nama-pelanggan" placeholder="Nama Anda" style="width:90%; padding:8px; margin-top:10px;"><br><br>
+      <input type="text" id="wa-pelanggan" placeholder="Nomor WhatsApp" style="width:90%; padding:8px;"><br><br>
 
       <label for="metode-pembayaran">Pilih metode pembayaran:</label><br>
       <select id="metode-pembayaran" style="padding:8px; margin-top:10px;">
@@ -870,8 +919,6 @@
     // Jika keranjang kosong, bisa sembunyikan angka atau set 0
     if (totalQty === 0) {
         cartCount.textContent = '0';
-        // Bisa juga sembunyikan badge:
-        // cartCount.style.display = 'none';
     } else {
         // Pastikan tampil
         // cartCount.style.display = 'inline-block';
@@ -934,6 +981,35 @@
         const nama = produk.getAttribute("data-nama").toLowerCase();
         produk.style.display = nama.includes(keyword) ? "block" : "none";
       });
+    });
+
+    document.getElementById("searchBtn").addEventListener("click", function () {
+      const keyword = searchInput.value.toLowerCase();
+      const semuaBagian = [
+        ...document.querySelectorAll('main > section'),
+        document.getElementById('slider'),
+        document.getElementById('Profil-toko'),
+        document.getElementById('tentang-hubungi')
+      ];
+
+      let ditemukan = false;
+
+      produkList.forEach(produk => {
+        const nama = produk.getAttribute("data-nama").toLowerCase();
+        if (nama.includes(keyword)) {
+          produk.style.display = "block";
+          ditemukan = true;
+        } else {
+          produk.style.display = "none";
+        }
+      });
+
+      if (ditemukan) {
+        semuaBagian.forEach(sec => sec.style.display = 'none');
+        document.getElementById('produk-list').style.display = 'block';
+      } else {
+        alert("Produk tidak ditemukan.");
+      }
     });
 
     // Reset search on load
@@ -1059,20 +1135,15 @@
 
       const nama = prompt("Masukkan Nama Anda:");
       const no_wa = prompt("Masukkan Nomor WhatsApp Anda:");
-
-      if (!nama || !no_wa) {
-        alert("Nama dan Nomor WA wajib diisi.");
-        return;
-      }
-
       const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
       const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
 
       const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
-      const noToko = "6287873528852";
+
+      const noToko = "6287873528852"; // Ganti pakai nomor WA toko kamu (format internasional, awali 62)
       const linkWA = `https://wa.me/${noToko}?text=${encodeURIComponent(pesan)}`;
 
-      // Kirim data ke PHP
+      // Optional: Simpan ke database sebelum ke WA
       const formData = new FormData();
       formData.append('nama', nama);
       formData.append('no_wa', no_wa);
@@ -1083,15 +1154,74 @@
         method: 'POST',
         body: formData
       })
-      .then(res => res.text())
-      .then(result => {
-        console.log("RESPON PHP:", result);
+      .then(() => {
         window.location.href = linkWA;
-      })
-      .catch(err => {
-        console.error("GAGAL FETCH:", err);
       });
     }
+
+    // Toggle tampilan 1 bagian sesuai menu
+    document.querySelectorAll('.menu a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+
+        e.preventDefault();
+        const id = href.substring(1); // buang tanda '#'
+        let target = document.getElementById(id);
+        let isSubProduk = false;
+
+        // Siapkan semua bagian yang akan dikontrol
+        const semuaBagian = [
+          ...document.querySelectorAll('main > section'),
+          document.getElementById('slider'),
+          document.getElementById('Profil-toko'),
+          document.getElementById('tentang-hubungi')
+        ];
+
+        // Jika submenu produk → tampilkan produk-list & sembunyikan produk lain
+        if (target && target.closest('#produk-list')) {
+          document.getElementById('produk-list').style.display = 'block';
+          document.querySelectorAll('#produk-list > div.produk').forEach(produk => {
+            produk.style.display = (produk.id === id) ? 'block' : 'none';
+          });
+          isSubProduk = true;
+          target = document.getElementById('produk-list');
+        }
+
+        // Jika kontak → tampilkan #tentang-hubungi
+        if (id === 'kontak') {
+          target = document.getElementById('tentang-hubungi');
+        }
+
+        // Jika pembayaran → hanya tampilkan checkout
+        if (id === 'pembayaran') {
+          target = document.getElementById('checkout');
+        }
+
+        const sudahAktif = target.classList.contains('tampil-aktif');
+
+        // Reset semua bagian
+        semuaBagian.forEach(sec => {
+          sec.style.display = 'none';
+          sec.classList.remove('tampil-aktif');
+        });
+
+        // Reset produk jika bukan submenu
+        if (!isSubProduk) {
+          document.querySelectorAll('#produk-list > div.produk').forEach(p => p.style.display = 'block');
+        }
+
+        if (!sudahAktif) {
+          target.style.display = 'block';
+          target.classList.add('tampil-aktif');
+          window.location.hash = href;
+        } else {
+          // Tampilkan semua bagian lagi
+          semuaBagian.forEach(sec => sec.style.display = '');
+        }
+      });
+    });
+
 </script>
 
 </body>
