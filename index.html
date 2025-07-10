@@ -521,89 +521,21 @@
     }
 
     @media (max-width: 768px) {
-    .menu {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
+    nav {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 1rem;
+      gap: 0.5rem;
     }
 
-    .submenu {
-      position: relative;
-      top: 0;
-      box-shadow: none;
+    nav::-webkit-scrollbar {
+      display: none;
     }
 
-    .submenu li a {
-      padding: 10px 20px;
-    }
-
-    .search-bar input {
-      width: 90%;
-    }
-
-    .produk {
-      padding: 10px;
-    }
-
-    .thumbnails {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .thumbnail-img {
-      width: 50px;
-      height: 50px;
-    }
-
-    .keranjang-float {
-      top: 0.5rem;
-      right: 0.5rem;
-      font-size: 1em;
-      padding: 8px 12px;
-    }
-
-    #popup-cart {
-      width: 90%;
-      right: 5%;
-    }
-
-    .header-toko {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .logo-toko {
-      margin: 0 0 10px 0;
-    }
-
-    .judul-toko {
-      font-size: 1.5em;
-    }
-
-    #checkout button,
-    .btn-keranjang,
-    .btn-beli {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-
-    .running-text marquee {
-      font-size: 0.9em;
-    }
-
-    #tentang-hubungi {
-      padding: 10px;
-    }
-
-    .kontak-item {
-      flex-direction: column;
-      align-items: flex-start;
-      font-size: 0.95em;
-    }
-
-    .kontak-item img {
-      margin-bottom: 5px;
+    nav a, nav .dropdown, nav button {
+      flex: 0 0 auto;
+      white-space: nowrap;
     }
   }
 
@@ -1221,6 +1153,7 @@
         }
       });
     });
+
 
 </script>
 
