@@ -537,10 +537,11 @@
 
     @media (max-width: 768px) {
       .keranjang-float {
-        top: 70px;
-        right: 10px;
-        font-size: 0.9em;
-        padding: 8px 12px;
+        position: static;
+        margin: 8px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
@@ -576,6 +577,28 @@
 
       .menu a {
         padding: 10px 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .submenu {
+        position: static;
+        display: none;
+        width: 100%;
+        text-align: center;
+        background-color: #f984f9;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .menu li:hover .submenu {
+        display: block;
+      }
+
+      .submenu li a {
+        padding: 10px 5px;
+        display: block;
+        width: 100%;
       }
     }
 
