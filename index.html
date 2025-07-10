@@ -560,6 +560,25 @@
       display: block !important;
     }
 
+    @media (max-width: 768px) {
+      .menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        justify-items: center;
+        padding: 10px;
+      }
+
+      .menu > li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .menu a {
+        padding: 10px 0;
+      }
+    }
+
   </style>
 
   <script>
