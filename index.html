@@ -1212,6 +1212,11 @@
         } else {
           // Tampilkan semua bagian lagi
           semuaBagian.forEach(sec => sec.style.display = '');
+
+          // Tampilkan semua produk kembali jika produk-list
+          if (target.id === 'produk-list') {
+            document.querySelectorAll('#produk-list > div.produk').forEach(p => p.style.display = 'block');
+          }
         }
       });
     });
