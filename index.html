@@ -4,232 +4,326 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <title>Atik Krudung - Toko Online</title>
-  <style>
-    /* Animasi fade-in smooth */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease forwards;
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .fade-delay-1 { animation-delay: 0.2s; }
-    .fade-delay-2 { animation-delay: 0.4s; }
-    .fade-delay-3 { animation-delay: 0.6s; }
-    .fade-delay-4 { animation-delay: 0.8s; }
-    .fade-delay-5 { animation-delay: 1s; }
+  
+  <!-- SEO Atik Krudung -->
+  <title>Atik Krudung - Toko Kerudung Kekinian, Elegan & Terjangkau</title>
+  <meta name="description" content="Atik Krudung menyediakan kerudung kekinian dengan harga terjangkau, bahan nyaman, dan desain elegan. Cek koleksi terbaru kami sekarang.">
+  <meta name="keywords" content="Atik Krudung, kerudung kekinian, toko kerudung online, hijab modern, kerudung murah, hijab Cikarang">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/logoatik.png" type="image/png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Atik Krudung - Toko Kerudung Kekinian, Elegan & Terjangkau">
+  <meta property="og:description" content="Cek koleksi kerudung terbaru dari Atik Krudung dengan harga terjangkau dan bahan nyaman.">
+  <meta property="og:image" content="https://onlyst18.github.io/AtikKrudung/img/logoatik.png">
+  <meta property="og:url" content="https://onlyst18.github.io/AtikKrudung/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Atik Krudung - Toko Kerudung Kekinian, Elegan & Terjangkau">
+  <meta name="twitter:description" content="Cek koleksi kerudung terbaru dari Atik Krudung dengan harga terjangkau dan bahan nyaman.">
+  <meta name="twitter:image" content="https://onlyst18.github.io/AtikKrudung/img/logoatik.png">
+
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Atik Krudung",
+    "image": "https://onlyst18.github.io/AtikKrudung/img/logoatik.png",
+    "description": "Toko kerudung kekinian dengan harga terjangkau dan bahan nyaman.",
+    "url": "https://onlyst18.github.io/AtikKrudung/",
+    "telephone": "+6287873528852",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cikarang",
+      "addressRegion": "Jawa Barat",
+      "addressCountry": "ID"
+    },
+    "email": "atikkrudung@gmail.com",
+    "sameAs": [
+      "mailto:atikkrudung@gmail.com",
+      "tel:+6287873528852",
+      "https://www.instagram.com/atikupi"
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <style>
     body {
+      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #fff0ff;
-      margin: 0; padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      background: linear-gradient(to bottom, #f3c6e3, #e9c9ec);
+      color: #333;
     }
     header {
-      background-color: #f984f9;
-      padding: 20px;
-      font-weight: bold;
+      background: #dfb6d8;
       color: white;
+      padding: 1rem;
       text-align: center;
-      user-select: none;
     }
-    main {
-      flex: 1;
-      max-width: 900px;
-      margin: 20px auto;
-      width: 90%;
+    .running-text {
+      background: #c08dbb;
+      color: white;
+      padding: 0.5rem;
+      overflow: hidden;
     }
-    .produk {
-      background-color: white;
-      box-shadow: 0 0 10px #f0b9f9;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 25px;
-    }
-    .produk h3 {
-      margin-top: 0;
-      color: #a120d1;
-      cursor: pointer;
-      user-select: none;
-    }
-    .deskripsi, .desc {
-      display: none;
-      margin-top: 5px;
-      color: #555;
-    }
-    .foto-utama {
-      width: 100%;
-      max-height: 300px;
-      object-fit: contain;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 10px 0;
-      box-shadow: 0 0 5px #f984f9;
-    }
-    .thumbnails {
+    nav {
+      background: #dfb6d8;
       display: flex;
-      gap: 8px;
-      margin-bottom: 15px;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    .thumbnail-img {
-      width: 60px;
-      height: 60px;
-      border-radius: 10px;
-      object-fit: cover;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: border-color 0.3s;
-    }
-    .thumbnail-img.selected {
-      border-color: #a120d1;
-    }
-    .btn-keranjang, .btn-beli {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+    nav a {
+      color: rgb(243, 238, 238);
+      text-decoration: none;
       font-weight: bold;
-      margin-right: 10px;
-      transition: background-color 0.3s;
-      color: white;
-    }
-    .btn-keranjang {
-      background-color: #dba0eb;
-    }
-    .btn-keranjang:hover {
-      background-color: #a120d1;
-    }
-    .btn-beli {
-      background-color: #f984f9;
-    }
-    .btn-beli:hover {
-      background-color: #c467cc;
-    }
-    #pembayaran {
-      background-color: white;
-      box-shadow: 0 0 10px #dd71ee;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 40px;
-    }
-    /* Tombol pembayaran horizontal & warna brand */
-    .pembayaran-btn {
-      color: white;
-      border: none;
-      padding: 10px 15px;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
       cursor: pointer;
-      margin: 5px;
-      border-radius: 5px;
-      width: auto;
-      min-width: 100px;
-      font-weight: bold;
+    }
+    nav a:hover {
+      background: #c08dbb;
+    }
+    .product {
+      border: 1px solid #c08dbb;
+      margin: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f8e1f1;
       text-align: center;
-      transition: opacity 0.3s ease;
     }
-
-    .pembayaran-whatsapp {
-      background-color: #25d366; 
-    }
-
-    .pembayaran-instagram {
-      background-color: #550c45;
-      color: #fff;
-    }
-
-    .pembayaran-mandiri {
-      background-color: #0066cc;
-      color: white;
-    }
-
-    .pembayaran-btn:hover {
-      opacity: 0.8;
-    }
-    #info-pembayaran {
-      margin-top: 15px;
-      font-weight: bold;
-      min-height: 30px;
-      color: #a120d1;
-    }
-    #checkout {
-      background-color: white;
-      box-shadow: 0 0 10px #f0b9f9;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 40px;
-    }
-    #checkout-list {
-      margin-bottom: 15px;
-    }
-    #checkout-list > div {
-      border-bottom: 1px solid #f984f9;
-      padding: 8px 0;
-      font-weight: 600;
-    }
-    #checkout-total {
-      font-weight: bold;
-      font-size: 1.2em;
-      margin-bottom: 15px;
-      color: #a120d1;
-    }
-    #checkout button {
-      background-color: #f984f9;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 10px;
-      font-weight: bold;
+    .product img {
+      width: 150px;
       cursor: pointer;
-      color: white;
-      transition: background-color 0.3s;
+      border-radius: 8px;
     }
-    #checkout button:hover {
-      background-color: #a120d1;
-    }
-    #popup-zoom {
+    .cart {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
+      top: 1rem;
+      right: 1rem;
+      background: #c08dbb;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      z-index: 9999;
+    }
+    .section {
+      margin: 2rem;
+      padding: 1rem;
+      background: #e1f5fe; 
+      border-left: 5px solid #81d4fa;
+    }
+    .popup, #popup-welcome {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
       justify-content: center;
       align-items: center;
       z-index: 1000;
     }
-    #popup-zoom img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 15px white;
-      cursor: pointer;
-    }
-    footer {
+    .popup-content {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      max-width: 400px;
       text-align: center;
-      padding: 12px 10px;
-      background-color: #f984f9;
+    }
+    button {
+      background: #c08dbb;
+      color: #f0ecec;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #b57ab4;
+      transform: scale(1.05);
+    }
+    .dropdown {
       color: white;
+      text-decoration: none;
       font-weight: bold;
-      user-select: none;
-      margin-top: auto;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.3s;
     }
-    /* Bagian tentang kami dan hubungi kami */
-    #tentang-hubungi {
-      background-color: white;
-      box-shadow: 0 0 10px #f0b9f9;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 40px;
-      color: #555;
+    .dropdown:hover {
+      background: #b57ab4;
     }
-    #tentang-hubungi h2 {
-      color: #a120d1;
-      margin-bottom: 15px;
-      user-select: none;
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #b57ab4;
+      border-radius: 4px;
+      min-width: 150px;
+      z-index: 999;
     }
+    .submenu a {
+      display: block;
+      padding: 0.5rem;
+      color: rgb(8, 8, 8);
+      text-decoration: none;
+    }
+    .submenu a:hover {
+      background: #1565c0;
+    }
+    .dropdown:hover .submenu {
+      display: block;
+    }
+    .slider-container {
+      overflow: hidden;
+      width: calc(100% - 20px);
+      max-width: 1600px;
+      height: 500px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 8px;
+    }
+    .slider {
+      display: flex;
+      width: 100%;
+      animation: slide 15s ease-in-out infinite;
+    }
+    .slider img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(0); }
+      30% { transform: translateX(-100%); }
+      55% { transform: translateX(-100%); }
+      60% { transform: translateX(-200%); }
+      85% { transform: translateX(-200%); }
+      90% { transform: translateX(0); }
+      100% { transform: translateX(0); }
+    }
+    .section {
+      margin: 2rem;
+      padding: 1rem;
+      background: #e1f5fe; 
+      border-left: 5px solid #81d4fa;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .section.show {
+      display: block;
+      opacity: 1;
+    }
+    .popup-content {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+    #popup-zoom .popup-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+    @media (max-width: 768px) {
+      .slider-container {
+        height: 300px;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .product img {
+        width: 100px;
+      }
+      button, .btn-portfolio {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+      .cart {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.3rem 0.7rem;
+      }
+    }
+    body.dark-mode {
+      background: linear-gradient(to bottom, #6a1b9a, #4a148c);
+      color: #fce4ec;
+    }
+
+    body.dark-mode header {
+      background: #7b1fa2;
+      color: white;
+    }
+
+    body.dark-mode .running-text {
+      background: #c272e4;
+      color: white;
+    }
+
+    body.dark-mode nav {
+      background: #c272e4;
+      color: white;
+    }
+
+    body.dark-mode nav a:hover,
+    body.dark-mode .dropdown:hover {
+      background: #6a1b9a;
+    }
+
+    body.dark-mode .product {
+      background: #8e24aa;
+      border-color: #ba68c8;
+    }
+
+    body.dark-mode .section {
+      background: #2b2b2b;
+      border-left: 5px solid #0d47a1;
+    }
+
+    body.dark-mode .popup-content {
+      background: #333;
+      color: #f1f1f1;
+    }
+
+    body.dark-mode button,
+    body.dark-mode {
+      background: #7b1fa2;
+      color: white;
+    }
+
+    body.dark-mode button:hover,
+    body.dark-mode {
+      background: #6a1b9a;
+    }
+    
     .kontak-item {
       display: flex;
       align-items: center;
@@ -251,529 +345,155 @@
       color: #f984f9;
       text-decoration: underline;
     }
-
-    /*LOGO*/
-    .header-toko {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      animation: fadeInLeft 1s ease-out forwards;
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-
-    .logo-toko {
-      height: 70px;
-      margin-right: 15px; /* agar ada jarak dengan teks */
-    }
-
-    .judul-toko {
-      font-family: 'Poppins', sans-serif;
-      font-size: 32px;
-      color: #d63384;
-      margin: 0;
-    }
-
-    @keyframes fadeInLeft {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header-toko {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .judul-toko {
-        font-size: 24px;
-        text-align: center;
-      }
-
-      .logo-toko {
-        height: 60px;
-      }
-    }
-
-    /*Running Text dan Pembayaran*/
-    .running-text {
-      background-color: #fcd3ff;
-      padding: 10px 0;
-      color: #a120d1;
-      font-weight: bold;
-      font-size: 1.1em;
-      user-select: none;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .running-text marquee {
-      font-family: 'Poppins', sans-serif;
-      letter-spacing: 1px;
-    }
-    .pembayaran-btn::before {
-      content: '';
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      background-size: cover;
-    }
-
-    /* Profil Toko */
-    #Profil-toko {
-      background-color: white;
-      box-shadow: 0 0 10px #f0b9f9;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 25px;
-      color: #101010;
-      font-size: 1.1em;
-      text-align: center;
-    }
-
-    /* === MENU & SUBMENU === */
-    .navigasi {
-      background-color: #f984f9;
-      padding: 10px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      user-select: none;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .menu {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .menu > li {
-      position: relative;
-    }
-
-    .menu a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 12px;
-      display: block;
-      transition: background 0.3s;
-    }
-
-    .menu a:hover {
-      background-color: #a120d1;
-      border-radius: 5px;
-    }
-
-    .submenu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #f984f9;
-      list-style: none;
-      padding: 0;
+    .popup-pembayaran {
       display: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      border-radius: 5px;
-    }
-
-    .menu li:hover .submenu {
-      display: block;
-    }
-
-    .submenu li a {
-      padding: 10px 15px;
-      white-space: nowrap;
-    }
-
-    /* Smooth scroll */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Search Bar */
-    .search-bar {
-      text-align: center;
-      margin: 15px 0;
-    }
-    .search-bar input {
-      padding: 8px;
-      width: 80%;
-      max-width: 300px;
-      border: 2px solid #f984f9;
-      border-radius: 20px;
-      font-size: 1em;
-    }
-
-    @media (max-width: 768px) {
-      .search-bar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .search-bar button {
-        margin-top: 10px;
-      }
-    }
-
-    /* Slider */
-    #slider {
-      max-width: 100%;
-      overflow: hidden;
-      position: relative;
-      margin: 20px auto;
-    }
-    #slider img {
-      width: 100%;
-      height: auto;
-      display: none;
-    }
-    #slider img.active {
-      display: block;
-      animation: fade 1s;
-    }
-    @keyframes fade {
-      from {opacity: 0.3;}
-      to {opacity: 1;}
-    }
-
-    /* POP-UP Selamat Datang */
-    #welcome-popup {
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 240, 255, 0.95);
-      display: flex;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: 2000;
     }
-
-    .popup-content {
+    .popup-pembayaran .content {
       background: white;
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 0 20px #d182e6;
-    }
-
-    .popup-content h2 {
-      color: #a120d1;
-    }
-
-    .popup-content button {
-      padding: 10px 20px;
-      background-color: #f984f9;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* === POPUP KERANJANG DENGAN ANIMASI === */
-    #popup-cart {
-      position: absolute;
-      top: 40px;
-      right: 0;
-      width: 250px;
-      background: rgb(250, 247, 249);
-      box-shadow: 0 0 10px #eb0beb;
-      padding: 10px;
-      border-radius: 10px;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
-      z-index: 999;
-    }
-    #popup-cart.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-    #popup-cart button {
-      background-color: #f605f6ab;
-      color: white;
-      border: none;
-      padding: 8px 15px;
+      padding: 2rem;
       border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
+      max-width: 400px;
+      width: 90%;
+    }
+    .popup-pembayaran input {
       width: 100%;
-      margin-top: 8px;
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
-    .keranjang-float {
-      position: fixed;
-      top: 0.5rem;
-      right: 1rem;
-      background-color: #881188;
-      color: rgb(251, 248, 248);
-      padding: 10px 14px;
-      border-radius: 30px;
-      font-size: 1.1em;
-      font-weight: bold;
+    .popup-pembayaran button {
+      margin-top: 10px;
+      width: 100%;
+    }
+    .popup-pembayaran .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
       cursor: pointer;
-      z-index: 10000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      color: #888;
     }
-
-    .keranjang-float #cart-count {
-      background-color: red;
-      color: white;
-      border-radius: 50%;
-      padding: 2px 8px;
-      font-size: 0.8em;
-      margin-left: 6px;
-      font-weight: bold;
+    .popup-pembayaran .close:hover {
+      color: #000;
     }
-
-    @media (max-width: 768px) {
-      .keranjang-float {
-        top: 50px;
-        right: 10px;
-        font-size: 0.9em;
-        padding: 8px 12px;
-      }
-    }
-
-    #popup-cart {
-      color: #333 !important; 
-    }
-
-    #popup-cart-list {
-      color: #333 !important;
-    }
-
-    #popup-cart-list button {
-      color: white;
-    }
-
-    .tampil-aktif {
-      display: block !important;
-    }
-
-    @media (max-width: 768px) {
-      .menu {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        justify-items: center;
-        padding: 10px;
-      }
-
-      .menu > li {
-        width: 100%;
-        text-align: center;
-      }
-
-      .menu a {
-        padding: 10px 0;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .submenu {
-        position: static;
-        display: none;
-        width: 100%;
-        text-align: center;
-        background-color: #f984f9;
-        box-shadow: none;
-        border-radius: 0;
-      }
-
-      .menu li:hover .submenu {
-        display: block;
-      }
-
-      .submenu li a {
-        padding: 10px 5px;
-        display: block;
-        width: 100%;
-      }
-    }
-
   </style>
-
-  <script>
-    function tampilkanPembayaran(metode) {
-      const info = {
-        whatsapp : "WhatsApp : 0878-7352-8852 (Atik Krudung)",
-        instagram : "Scan QRIS di halaman checkout",
-        mandiri : "Bank Mandiri : 1570006455225 a.n MUSAEPI"
-      };
-      document.getElementById("info-pembayaran").innerText = info[metode] || "Pilih metode pembayaran";
-    }
-  </script>
 </head>
 <body>
-
-  <!-- Pop-up Welcome -->
-<!-- Pop-up Selamat Datang -->
-<div id="welcome-popup">
-  <div class="popup-content">
-    <h2>Welcome!</h2>
-    <p>New collection <strong>10% OFF</strong> <br>Get a discount on all items in your next order</p>
-    <button onclick="tutupPopup()">Shop Now</button>
-  </div>
-</div>
-
-<!-- Keranjang Floating -->
-<div class="keranjang-float" onclick="toggleCartPopup()">
-  🛒 <span id="cart-count">0</span>
-  <div id="popup-cart">
-    <div id="popup-cart-list" style="font-size: 0.9em;"></div>
-    <p id="popup-cart-total" style="font-weight: bold; color: #a120d1;">Total: Rp0</p>
-    <button onclick="keCheckout()">Lanjut ke Checkout</button>
-  </div>
-</div>
-
-  <!-- HEADER LOGO + JUDUL -->
-<div class="header-toko">
-  <img src="img/logoatik.png" alt="Logo Atik Kerudung" class="logo-toko">
-  <h1 class="judul-toko">Atik Kerudung</h1>
-</div>
-
-  <!-- Navigasi Menu -->
-  <nav class="navigasi fade-in fade-delay-2">
-  <ul class="menu">
-    <li><a href="#">Beranda</a></li>
-    <li><a href="#Profil-toko">Profil Toko</a></li>
-    <li>
-      <a href="#">Produk</a>
-      <ul class="submenu">
-        <li><a href="#bella-square">Bella Square</a></li>
-        <li><a href="#paris-jadul">Paris Jadul</a></li>
-        <li><a href="#pashmina-viscose">Pashmina Viscose</a></li>
-        <li><a href="#pashmina-silk">Pashmina Silk</a></li>
-      </ul>
-    </li>
-    <li><a href="#slider">Promo</a></li>
-    <li><a href="#pembayaran">Pembayaran</a></li>
-    <li><a href="#kontak">Kontak</a></li>
-</li>
-
-  </ul>
-</nav>
-
-  <header class="fade-in fade-delay-3">
-  Atik Krudung
+  <header>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+      <img src="img/logoatik.png" alt="Logo" style="width: 120px; height: 120px; border-radius: 50%;">
+      <h1>Atik Krudung</h1>
+    </div>
   </header>
 
-  <div class="search-bar fade-in fade-delay-4">
-    <input type="text" id="searchInput" placeholder="Cari produk...">
-    <button id="searchBtn" style="padding: 9px 18px; margin-left: 10px; background-color: #f984f9; color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer;">Cari</button>
+  <div class="running-text">
+    <marquee>💞 Bikin penampilanmu makin anggun bersama Atik Krudung 💞
+</marquee>
   </div>
 
-  <div class="running-text fade-in fade-delay-5">
-    <marquee>Bikin penampilanmu makin anggun bersama Atik Krudung</marquee>
+  <div style="padding: 1rem; text-align: center;">
+    <input type="text" id="search-produk" placeholder="Cari Produk..." style="padding: 0.5rem; width: 50%; border-radius: 4px; border: 1px solid #ccc;">
+    <button onclick="cariProduk()" style="margin-left: 10px;">Cari</button>
   </div>
 
-  <!-- SLIDER -->
-<div id="slider" class="fade-in fade-delay-3">
-  <img src="img/slider1.jpg" class="active" alt="Slide 1">
-  <img src="img/slider2.jpg" class="active" alt="Slide 2">
-  <img src="img/slider3.jpg" class="active" alt="Slide 3">
-  <img src="img/slider4.jpg" class="active" alt="Slide 4">
-</div>
+  <div class="cart" onclick="bukaPopupKeranjang()">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-count">0</span>
+  </div>
 
-  <section id="Profil-toko" class="tentang-hubungi fade-in fade-delay-1" style="text-align: center; max-width: 800px; margin: 0 auto;">
-  <h2>Profil Toko</h2>
-  <p><strong>Atik Kerudung adalah brand lokal yang hadir untuk mempercantik hari-harimu dengan koleksi krudung yang modis, nyaman, dan berkualitas.</p>
-  <p>Berdiri sejak tahun 2015, kami telah berkomitmen menghadirkan pilihan hijab terbaik untuk para wanita Indonesia yang ingin tampil anggun dan percaya diri di setiap kesempatan.</p>
-</section>
+  <nav>
+    <a href="#" onclick="keBeranda(); return false;">Beranda</a>
+    <div class="dropdown">
+      Produk
+      <div class="submenu">
+        <a href="#" onclick="tampilProduk('Bella Square'); return false;">Bella Square</a>
+        <a href="#" onclick="tampilProduk('Paris Jadul'); return false;">Paris Jadul</a>
+        <a href="#" onclick="tampilProduk('Pashmina Viscose'); return false;">Pashmina Viscose</a>
+        <a href="#" onclick="tampilProduk('Pashmina Silk'); return false;">Pashmina Silk</a>
+      </div>
+    </div>
+    <a href="#deskripsi" onclick="toggleBagian('deskripsi'); return false;">Profil Toko</a>
+    <a href="#kontak" onclick="toggleBagian('kontak'); return false;">Kontak</a>
+    <a href="#" onclick="kePembayaran(); return false;">Pembayaran</a>
+    <button id="toggle-mode" class="btn-portfolio" style="margin-left:10px;">🌙</button>
+  </nav>
+
+  <div style="margin-top: 50px;">
+    <div class="slider-container" id="slider-container">
+      <div class="slider">
+      <img src="img/slider1.jpg" class="active" alt="Slide 1">
+      <img src="img/slider2.jpg" class="active" alt="Slide 2">
+      <img src="img/slider3.jpg" class="active" alt="Slide 3">
+      <img src="img/slider4.jpg" class="active" alt="Slide 4">
+      </div>
+  </div>
 
   <main>
-    <section id="produk-list" class="fade-in fade-delay-2">
-      <div id="bella-square" class="produk" data-id="1" data-nama="Bella Square" data-harga="15000">
-        <h3 class="judul-produk">Bella Square</h3>
-        <p>Rp15.000</p>
-        <div class="desc"><p>Deskripsi : Kerudung segi empat berbahan voal premium ini hadir dengan tekstur ringan dan tidak licin, sangat cocok untuk dipakai hariam maupun acara formal.</p></div>
-        <img class="foto-utama" src="img/bsutama.jpg" alt="Bella Square" />
-        <div class="thumbnails">
-          <img src="img/bsutama.jpg" class="thumbnail-img selected" alt="Bella 1" />
-          <img src="img/bella1.jpg" class="thumbnail-img" alt="Bella 2" />
-          <img src="img/bella2.jpg" class="thumbnail-img" alt="Bella 3" />
-          <img src="img/bella3.jpg" class="thumbnail-img" alt="Bella 4" />
-          <img src="img/bella4.jpg" class="thumbnail-img" alt="Bella 5" />
-          <img src="img/bella5.jpg" class="thumbnail-img" alt="Bella 5" />
-        </div>
-        <button class="btn-keranjang">+ Keranjang</button>
+    <section id="produk" class="section">
+      <div class="product">
+        <h3>Bella Square</h3>
+        <img src="img/bsutama.jpg" alt="Bella Square" onclick="zoom('Bella Square')">
+        <p>Kerudung segi empat berbahan voal premium ini hadir dengan tekstur ringan dan tidak licin, sangat cocok untuk dipakai hariam maupun acara formal.</p>
+        <p><strong>Harga: Rp 15.000</strong></p>
+        <button onclick="tambahLangsungKeKeranjang('Bella Square', 15000)">Tambah ke Keranjang</button>
         <button class="btn-beli">Beli Sekarang</button>
       </div>
-
-      <div id="paris-jadul" class="produk" data-id="2" data-nama="Paris Jadul" data-harga="20000">
-        <h3 class="judul-produk">Paris Jadul</h3>
-        <p>Rp20.000</p>
-        <div class="desc"><p>Deskripsi : Kerudung Paris Jadul merk Farisah dengan bahan katun paris tipis ringan,adem,dan mudah dibentuk. Dikenal sejak dulu karena kenyamanannya, kerudung ini jadi favorit banyak muslimah sejak dulu hingga sekarang.</p></div>
-        <img class="foto-utama" src="img/pjutama.jpg" alt="Paris Jadul" />
-        <div class="thumbnails">
-          <img src="img/pjutama.jpg" class="thumbnail-img selected" alt="PJ 1" />
-          <img src="img/pj1.jpg" class="thumbnail-img" alt="PJ 2" />
-          <img src="img/pj2.jpg" class="thumbnail-img" alt="PJ 3" />
-          <img src="img/pj3.jpg" class="thumbnail-img" alt="PJ 4" />
-          <img src="img/pj4.jpg" class="thumbnail-img" alt="PJ 5" />
-          <img src="img/pj5.jpg" class="thumbnail-img" alt="PJ 5" />
-        </div>
-        <button class="btn-keranjang">+ Keranjang</button>
+      <div class="product">
+        <h3>Paris Jadul</h3>
+        <img src="img/pjutama.jpg" alt="Paris Jadul" onclick="zoom('Paris Jadul')">
+        <p>Kerudung Paris Jadul merk Farisah dengan bahan katun paris tipis ringan,adem,dan mudah dibentuk. Dikenal sejak dulu karena kenyamanannya, kerudung ini jadi favorit banyak muslimah sejak dulu hingga sekarang.</p>
+        <p><strong>Harga: Rp 20.000</strong></p>
+        <button onclick="tambahLangsungKeKeranjang('Paris Jadul', 20000)">Tambah ke Keranjang</button>
         <button class="btn-beli">Beli Sekarang</button>
       </div>
-
-      <div id="pashmina-viscose" class="produk" data-id="3" data-nama="Pashmina Viscose" data-harga="40000">
-      <h3 class="judul-produk">Pashmina Viscose</h3>
-      <p>
-        <span style="text-decoration: line-through; color: gray; margin-right: 8px;">
-          Rp40.000
-        </span>
-        <span style="color: rgb(14, 14, 14); font-weight: bold;">
-          Rp36.000
-        </span>
-      </p>
-      <div class="desc"><p>Deskripsi : Pashmina berbahan viscose hadir dengan tekstur lembut dan ringan, memberikan kesan elegan tanpa usaha berlebihan. Cocok untuk kamu yang suka tampilan anggun tapi tetap elegan.</p></div>
-      <img class="foto-utama" src="img/pv1.jpg" alt="Pashmina Viscose" />
-      <div class="thumbnails">
-        <img src="img/pv1.jpg" class="thumbnail-img selected" alt="Pashmina Viscose 1" />
-        <img src="img/pv2.jpg" class="thumbnail-img" alt="Pashmina Viscose 2" />
-        <img src="img/pv3.jpg" class="thumbnail-img" alt="Pashmina Viscose 3" />
-        <img src="img/pv4.jpg" class="thumbnail-img" alt="Pashmina Viscose 4" />
+      <div class="product">
+        <h3>Pashmina Viscose</h3>
+        <img src="img/pv1.jpg" alt="Pashmina Viscose" onclick="zoom('Pashmina Viscose')">
+        <p>Pashmina berbahan viscose hadir dengan tekstur lembut dan ringan, memberikan kesan elegan tanpa usaha berlebihan. Cocok untuk kamu yang suka tampilan anggun tapi tetap elegan.</p>
+        <p>
+          <span style="text-decoration: line-through; color: gray; margin-right: 8px;">
+            Rp40.000
+          </span>
+          <span style="color: rgb(14, 14, 14); font-weight: bold;">
+            Rp36.000
+          </span>
+        </p>
+        <button onclick="tambahLangsungKeKeranjang('Pashmina Viscose', 36000)">Tambah ke Keranjang</button>
+        <button class="btn-beli">Beli Sekarang</button>
       </div>
-      <button class="btn-keranjang">+ Keranjang</button>
-      <button class="btn-beli">Beli Sekarang</button>
-    </div>
-
-    <div id="pashmina-silk" class="produk" data-id="4" data-nama="Pashmina Silk" data-harga="35000">
-      <h3 class="judul-produk">Pashmina Silk</h3>
-      <p>Rp35.000</p>
-      <div class="desc"><p>Deskripsi : Pashmina bahan silk hadir dengan tampilan yang mengilap dan lembut, menjadikannya pilihan sempurna untuk acara spesial maupun tampilan formal sehari-hari.</p></div>
-      <img class="foto-utama" src="img/ps1.jpg" alt="Pashmina Silk" />
-      <div class="thumbnails">
-        <img src="img/ps1.jpg" class="thumbnail-img selected" alt="Pashmina Silk 1" />
-        <img src="img/ps2.jpg" class="thumbnail-img" alt="Pashmina Silk 2" />
-        <img src="img/ps3.jpg" class="thumbnail-img" alt="Pashmina Silk 3" />
-        <img src="img/ps4.jpg" class="thumbnail-img" alt="Pashmina Silk 4" />
+      <div class="product">
+        <h3>Pashmina Silk</h3>
+        <img src="img/ps1.jpg" alt="Pashmina Silk" onclick="zoom('Pashmina Silk')">
+        <p>Pashmina bahan silk hadir dengan tampilan yang mengilap dan lembut, menjadikannya pilihan sempurna untuk acara spesial maupun tampilan formal sehari-hari.</p>
+        <p><strong>Harga: Rp 35.000</strong></p>
+        <button onclick="tambahLangsungKeKeranjang('Pashmina Silk', 35000)">Tambah ke Keranjang</button>
+        <button class="btn-beli">Beli Sekarang</button>
       </div>
-      <button class="btn-keranjang">+ Keranjang</button>
-      <button class="btn-beli">Beli Sekarang</button>
-    </div>
     </section>
+  </main>
 
-    <section id="tentang-hubungi" class="fade-in fade-delay-3">
-      <h2 id="kontak">Tentang Kami</h2>
+    <section id="deskripsi" class="section">
+      <h2>Profil Toko</h2>
+      <p>Atik Kerudung adalah brand lokal yang hadir untuk mempercantik hari-harimu dengan koleksi krudung yang modis, nyaman, dan berkualitas.<br>
+      <p>Berdiri sejak tahun 2015, kami telah berkomitmen menghadirkan pilihan hijab terbaik untuk para wanita Indonesia yang ingin tampil anggun dan percaya diri di setiap kesempatan.</p>
       <p>Atik Kerudung berawal dari hobi menjahit dan kecintaan pemilik terhadap dunia fashion muslimah 
           bermula dari pesenan teman dekat, usaha ini tumbuh menjadi brand lokal hijab yang nyaman, anggun dan mudah dipadukan.
           Nilai utama adalah kejujuran, ketulusan, dan pelayanan yang ramah. Atik Kerudung hadir untuk membantu setiap muslimah
           merasa percaya diri dengan hijab yang sesuai dengan gaya dan aktivitasnya. 
-          Bukan hanya menjual, kami ingin jadi bagian dari perjalanan indahmu dalam berhijab.</p>
+          Bukan hanya menjual, kami ingin jadi bagian dari perjalanan indahmu dalam berhijab</p>
+    </section>
 
-      <h2>Hubungi Kami</h2>
+    <section id="kontak" class="section">
+      <h2>Kontak Kami</h2>
       <div class="kontak-item">
         <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=atikkrudung@gmail.com&su=Pertanyaan%20Produk%20Atik%20Kerudung" target="_blank">atikkrudung@gmail.com</a>
@@ -788,441 +508,348 @@
       </div>
     </section>
 
-    <section id="pembayaran" class="fade-in fade-delay-4">
-      <h2>Pembayaran</h2>
-      <p>Pilih metode pembayaran:</p>
-      <div style="display: flex; flex-wrap: wrap;">
-        <a class="pembayaran-btn pembayaran-whatsapp" href="https://wa.me/6287873528852" target="_blank">WhatsApp</a>
-        <button class="pembayaran-btn pembayaran-mandiri" onclick="tampilkanPembayaran('mandiri')">Bank Mandiri</button>
-      </div>
-      <p id="info-pembayaran" style="font-weight: bold; margin-top: 10px;"></p>
+    <section id="pembayaran" class="section">
+      <h2>Metode Pembayaran</h2>
+      <p>Kami menerima pembayaran melalui:</p>
+      <ul>
+        <li>Whatsapp : 087873528852</li>
+        <li>Bank Mandiri : 1570006455225 a.n MUSAEPI</li>
+      </ul>
     </section>
 
-    <section id="checkout" class="fade-in fade-delay-5">
-      <h2>Checkout</h2>
-      <div id="checkout-list"></div>
-      <p id="checkout-total">Total : Rp0</p>
-      <button onclick="konfirmasiCheckout()">Konfirmasi Pembayaran</button>
-    </section>
-  </main>
-
-  <div id="popup-zoom" onclick="hideZoom()">
-    <img src="" alt="Zoomed Image" />
-  </div>
-
-    <!-- POPUP KONFIRMASI PEMBAYARAN -->
-  <div id="popup-konfirmasi" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;" class="fade-in fade-delay-5">
-    <div style="background:white; padding:30px; border-radius:10px; text-align:center; max-width:300px;">
-      <h3 style="color:#a120d1;">Konfirmasi Pembayaran</h3>
-      <p id="popup-total">Total: Rp0</p>
-
-      <input type="text" id="nama-pelanggan" placeholder="Nama Anda" style="width:90%; padding:8px; margin-top:10px;"><br><br>
-      <input type="text" id="wa-pelanggan" placeholder="Nomor WhatsApp" style="width:90%; padding:8px;"><br><br>
-
-      <label for="metode-pembayaran">Pilih metode pembayaran:</label><br>
-      <select id="metode-pembayaran" style="padding:8px; margin-top:10px;">
-        <option value="whatsapp">WhatsApp</option>
-        <option value="mandiri">Bank Mandiri</option>
-      </select><br><br>
-      <button onclick="selesaikanPembayaran()" style="background:#f984f9; color:white; padding:10px 20px; border:none; border-radius:10px;">Bayar Sekarang</button>
-      <br><br>
-      <button onclick="tutupKonfirmasi()" style="background:#f5f2f2; padding:5px 10px; border:none; border-radius:8px;">Batal</button>
+  <div id="popup-welcome" class="popup">
+    <div class="popup-content">
+      <img src="img/logoatik.png" alt="Arless Bouquet" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1rem;">
+      <h3>Welcome!</h3>
+      <p>New collection <strong>10% OFF</strong> <br>Get a discount on all items in your next order</p>
+      <button onclick="document.getElementById('popup-welcome').style.display='none'">Shop Now!</button>
     </div>
   </div>
 
-  <footer class="fade-in fade-delay-5">
-    &copy; 2025 Atik Krudung
-  </footer>
+    <section id="keranjang" class="section">
+      <h2>Checkout</h2>
+      <ul id="list-keranjang"></ul>
+      <p>Total: Rp<span id="total">0</span></p>
+      <button onclick="checkoutWhatsApp()">Pesan Sekarang</button>
+    </section>
+
+  <div id="popup-keranjang" class="popup">
+    <div class="popup-content">
+      <h3>Isi Keranjang</h3>
+      <ul id="list-popup-keranjang"></ul>
+      <p>Total: Rp<span id="total-popup">0</span></p>
+      <span onclick="tutupPopupKeranjang()" style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.5rem; color: #333;">&times;</span>
+    </div>
+  </div>
+
+  <div id="popup-zoom" class="popup">
+    <div class="popup-content" style="
+      width: 300px; 
+      height: auto; 
+      background: rgba(0, 0, 0, 0.8); 
+      position: relative; 
+      padding: 1rem; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      border-radius: 8px;
+    ">
+      <span onclick="tutupZoom()" style="
+        position: absolute; 
+        top: 10px; 
+        right: 15px; 
+        cursor: pointer; 
+        font-size: 1.5rem; 
+        color: white;
+        z-index: 1001;
+      ">&times;</span>
+
+      <img id="zoom-image" src="" style="max-width: 100%; height: auto; border-radius: 8px;">
+    </div>
+  </div>
+
+  <div id="popup-pembayaran" class="popup-pembayaran">
+    <div class="content">
+      <span class="close" onclick="document.getElementById('popup-pembayaran').style.display='none'">&times;</span>
+      
+      <h3>Informasi Pembeli</h3>
+      <input type="text" id="namaPembeli" placeholder="Nama Anda" />
+      <input type="text" id="waPembeli" placeholder="No. WhatsApp Anda" />
+      <h4>Metode Pembayaran</h4>
+      <button onclick="prosesPesanan('whatsapp')">Via WhatsApp</button>
+      <button onclick="prosesPesanan('bank')">Via Bank Mandiri</button>
+    </div>
+  </div>
 
   <script>
-  // Tutup Zoom
-  function hideZoom() {
-    document.getElementById('popup-zoom').style.display = 'none';
-  }
-
-  function tutupPopup() {
-    document.getElementById("welcome-popup").style.display = "none";
-    document.querySelector(".keranjang-float").style.display = "flex";
-  }
-
-  window.onload = function () {
-    document.getElementById("welcome-popup").style.display = "flex";
-    document.getElementById("popup-cart").classList.remove("show");
-    document.querySelector(".keranjang-float").style.display = "none";
-  }
-
-  let cart = [];
-
-  function updateCheckout() {
-    const list = document.getElementById('checkout-list');
-    list.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, index) => {
-      const itemDiv = document.createElement('div');
-      const textSpan = document.createElement('span');
-      textSpan.textContent = `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`;
-      itemDiv.appendChild(textSpan);
-
-      const btnHapus = document.createElement('button');
-      btnHapus.textContent = 'Batal';
-      btnHapus.style.marginLeft = '10px';
-      btnHapus.style.backgroundColor = '#f44336';
-      btnHapus.style.color = 'white';
-      btnHapus.style.border = 'none';
-      btnHapus.style.borderRadius = '5px';
-      btnHapus.style.cursor = 'pointer';
-      btnHapus.onclick = () => {
-        cart.splice(index, 1);
-        updateCheckout();
-      };
-      itemDiv.appendChild(btnHapus);
-      list.appendChild(itemDiv);
-      total += item.harga * item.qty;
-    });
-    document.getElementById('checkout-total').textContent = `Total : Rp${total}`;
-  
-      // === SINKRONISASI POPUP KERANJANG ===
-    const popupList = document.getElementById("popup-cart-list");
-    const popupTotal = document.getElementById("popup-cart-total");
-    popupList.innerHTML = '';
-    let totalHarga = 0;
-
-    cart.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.style.marginBottom = '6px';
-      div.innerHTML = `
-        ${item.nama} x${item.qty} - Rp${item.harga * item.qty}
-        <button style="margin-left:5px;background:#f44336;border:none;color:white;padding:2px 6px;border-radius:5px;cursor:pointer;"
-          onclick="hapusItem(${index})">x</button>
-      `;
-      popupList.appendChild(div);
-      totalHarga += item.harga * item.qty;
-    });
-
-    popupTotal.textContent = `Total: Rp${totalHarga}`;
-
-    // Update angka di ikon keranjang
-    const cartCount = document.getElementById('cart-count');
-    let totalQty = 0;
-    cart.forEach(item => {
-        totalQty += item.qty;
-    });
-
-    cartCount.textContent = totalQty;
-
-    // Jika keranjang kosong, bisa sembunyikan angka atau set 0
-    if (totalQty === 0) {
-        cartCount.textContent = '0';
-    } else {
-        // Pastikan tampil
-        // cartCount.style.display = 'inline-block';
-    }
+    function pilihUkuran(nama) {
+      document.getElementById('popup').style.display = 'flex';
     }
 
-  function konfirmasiCheckout() {
-    if (cart.length === 0) {
-      alert('Keranjang kosong.');
-      return;
-    }
-    alert('Terima kasih telah berbelanja! Silakan lanjutkan ke pembayaran.');
-    cart = [];
-    updateCheckout();
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    // === Pop-up Selamat Datang ===
-    if (!localStorage.getItem("popupShown")) {
-      document.getElementById("welcome-popup").classList.add("show");
+    function tutupPopup() {
+      document.getElementById('popup').style.display = 'none';
     }
 
-    // === Zoom Gambar ===
-    document.querySelectorAll('.produk').forEach(produk => {
-      const fotoUtama = produk.querySelector('.foto-utama');
-      const thumbnails = produk.querySelectorAll('.thumbnail-img');
+    function zoom(nama) {
+      const produkList = document.querySelectorAll('#produk .product');
+      produkList.forEach(prod => {
+        const judul = prod.querySelector('h3').textContent;
+        if (judul === nama) {
+          const imgSrc = prod.querySelector('img').getAttribute('src');
+          document.getElementById('zoom-image').setAttribute('src', imgSrc);
+          document.getElementById('popup-zoom').style.display = 'flex';
+        }
+      }); 
+    }
 
-      thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', () => {
-          fotoUtama.src = thumbnail.src;
-          thumbnails.forEach(t => t.classList.remove('selected'));
-          thumbnail.classList.add('selected');
+    function tutupZoom() {
+      document.getElementById('popup-zoom').style.display = 'none';
+    }
+
+    window.onload = () => {
+      document.getElementById('popup-welcome').style.display = 'flex';
+
+      const semuaBagian = ["slider-container", "produk", "deskripsi", "kontak", "pembayaran", "keranjang"];
+      semuaBagian.forEach(id => {
+        const elemen = document.getElementById(id);
+        if (elemen) {
+          elemen.style.display = 'block';
+          elemen.classList.add('show');
+        }
+      });
+    };
+    
+    let keranjang = [];
+    let bagianAktif = null;
+
+    function toggleBagian(bagianId) {
+      const semuaBagian = ["slider-container", "produk", "deskripsi", "kontak", "pembayaran", "keranjang"];
+      const target = document.getElementById(bagianId);
+
+      if (bagianAktif === bagianId) {
+        semuaBagian.forEach(id => {
+          const elemen = document.getElementById(id);
+          if (elemen) elemen.style.display = 'block';
         });
-      });
-
-      fotoUtama.addEventListener('click', () => {
-        const popup = document.getElementById('popup-zoom');
-        popup.style.display = 'flex';
-        popup.querySelector('img').src = fotoUtama.src;
-      });
-    });
-
-    // === Toggle Deskripsi ===
-    document.querySelectorAll('.judul-produk').forEach(judul => {
-      judul.addEventListener('click', () => {
-        const produk = judul.closest('.produk');
-        const deskripsi = produk.querySelector('.desc');
-        if (deskripsi) {
-          deskripsi.style.display = deskripsi.style.display === 'block' ? 'none' : 'block';
-        }
-      });
-    });
- 
-    // === Search Produk ===
-    const searchInput = document.getElementById("searchInput");
-    const produkList = document.querySelectorAll(".produk");
-    searchInput.addEventListener("input", function () {
-      const keyword = this.value.toLowerCase();
-      produkList.forEach(produk => {
-        const nama = produk.getAttribute("data-nama").toLowerCase();
-        produk.style.display = nama.includes(keyword) ? "block" : "none";
-      });
-    });
-
-    document.getElementById("searchBtn").addEventListener("click", function () {
-      const keyword = searchInput.value.toLowerCase();
-      const semuaBagian = [
-        ...document.querySelectorAll('main > section'),
-        document.getElementById('slider'),
-        document.getElementById('Profil-toko'),
-        document.getElementById('tentang-hubungi')
-      ];
-
-      let ditemukan = false;
-
-      produkList.forEach(produk => {
-        const nama = produk.getAttribute("data-nama").toLowerCase();
-        if (nama.includes(keyword)) {
-          produk.style.display = "block";
-          ditemukan = true;
-        } else {
-          produk.style.display = "none";
-        }
-      });
-
-      if (ditemukan) {
-        semuaBagian.forEach(sec => sec.style.display = 'none');
-        document.getElementById('produk-list').style.display = 'block';
+        bagianAktif = null;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        alert("Produk tidak ditemukan.");
+        semuaBagian.forEach(id => {
+          const elemen = document.getElementById(id);
+          if (elemen) elemen.style.display = (id === bagianId) ? 'block' : 'none';
+        });
+        bagianAktif = bagianId;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    });
-
-    // Reset search on load
-    searchInput.value = '';
-    produkList.forEach(p => p.style.display = 'block');
-
-    // === Tambah ke Keranjang ===
-    document.querySelectorAll('.btn-keranjang').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const produk = btn.closest('.produk');
-        const id = produk.getAttribute('data-id');
-        const nama = produk.getAttribute('data-nama');
-        const harga = parseInt(produk.getAttribute('data-harga'));
-        const existing = cart.find(item => item.id === id);
-        if (existing) {
-          existing.qty++;
-        } else {
-          cart.push({ id, nama, harga, qty: 1 });
-        }
-        updateCheckout();
-      });
-    });
-
-    // === Beli Sekarang ===
-    document.querySelectorAll('.btn-beli').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const produk = btn.closest('.produk');
-        const id = produk.getAttribute('data-id');
-        const nama = produk.getAttribute('data-nama');
-        const harga = parseInt(produk.getAttribute('data-harga'));
-        cart = [{ id, nama, harga, qty: 1 }];
-        updateCheckout();
-        window.location.href = "#checkout";
-      });
-    });
-
-    // === SLIDER ===
-    let current = 0;
-      const slides = document.querySelectorAll("#slider img");
-        if (slides.length > 0) {
-        slides[0].classList.add("active");
-        setInterval(() => {
-        slides[current].classList.remove("active");
-        current = (current + 1) % slides.length;
-        slides[current].classList.add("active");
-      }, 4000);
-    }
-  });
-
-    function toggleCartPopup() {
-      const popup = document.getElementById("popup-cart");
-      popup.classList.toggle("show");
     }
 
-    function keCheckout() {
-      document.getElementById("popup-cart").classList.remove("show");
-      window.location.href = "#checkout";
-    }
-
-    function hapusItem(index) {
-      cart.splice(index, 1);
-      updateCheckout();
-    }
-
-    function konfirmasiCheckout() {
-      if (cart.length === 0) {
-        alert('Keranjang kosong.');
-        return;
-      }
-
-      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
-      document.getElementById('popup-total').textContent = `Total: Rp${total}`;
-      document.getElementById('popup-konfirmasi').style.display = 'flex';
-    }
-
-    function selesaikanPembayaran() {
-      const nama = document.getElementById('nama-pelanggan').value.trim();
-      const no_wa = document.getElementById('wa-pelanggan').value.trim();
-      const metode = document.getElementById('metode-pembayaran').value;
-
-      if (!nama || !no_wa) {
-        alert("Harap isi nama dan nomor WhatsApp.");
-        return;
-      }
-
-      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
-      const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
-      const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
-
-      if (metode === "whatsapp") {
-        const linkWA = `https://wa.me/6287873528852?text=${encodeURIComponent(pesan)}`;
-        window.location.href = linkWA;
-      } else if (metode === "mandiri") {
-        alert("Silakan transfer ke Bank Mandiri: 1570006455225 a.n MUSAEPI");
-      }
-
-      // Optional: Simpan ke database
-      const formData = new FormData();
-      formData.append('nama', nama);
-      formData.append('no_wa', no_wa);
-      formData.append('produk', JSON.stringify(cart));
-      formData.append('total', total);
-
-      fetch('proses_pesanan.php', {
-        method: 'POST',
-        body: formData
-      });
-
-      cart = [];
-      updateCheckout();
-      document.getElementById('popup-konfirmasi').style.display = 'none';
-    }
-
-    function tutupKonfirmasi() {
-      document.getElementById('popup-konfirmasi').style.display = 'none';
-    }
+    let produkDipilih = "";
+    let hargaSementara = 0;
 
     function simpanPesanan() {
-      if (cart.length === 0) {
-        alert('Keranjang masih kosong!');
-        return;
+      keranjang.push({ nama: produkDipilih, harga: hargaSementara });
+      updateKeranjang();
+      tutupPopup();
     }
 
-      const nama = prompt("Masukkan Nama Anda:");
-      const no_wa = prompt("Masukkan Nomor WhatsApp Anda:");
-      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
-      const produkList = cart.map(item => `${item.nama} x${item.qty} - Rp${item.harga * item.qty}`).join('\n');
+    function tutupPopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
 
-      const pesan = `Halo, saya mau order:\n${produkList}\n\nTotal: Rp${total}\n\nNama: ${nama}\nNo. WA: ${no_wa}`;
+    function tambahLangsungKeKeranjang(nama, harga) {
+      const index = keranjang.findIndex(item => item.nama === nama);
+      if (index !== -1) {
+        keranjang[index].jumlah += 1;
+      } else {
+        keranjang.push({ nama, harga, jumlah: 1 });
+      }
+      updateKeranjang();
+    }
 
-      const noToko = "6287873528852"; // Ganti pakai nomor WA toko kamu (format internasional, awali 62)
-      const linkWA = `https://wa.me/${noToko}?text=${encodeURIComponent(pesan)}`;
+    function updateKeranjang() {
+      let total = 0;
+      let count = 0;
+      const list = document.getElementById('list-keranjang');
+      list.innerHTML = '';
 
-      // Optional: Simpan ke database sebelum ke WA
-      const formData = new FormData();
-      formData.append('nama', nama);
-      formData.append('no_wa', no_wa);
-      formData.append('produk', JSON.stringify(cart));
-      formData.append('total', total);
-
-      fetch('proses_pesanan.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(() => {
-        window.location.href = linkWA;
+      keranjang.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nama} x${item.jumlah}`;
+        list.appendChild(li);
+        total += item.harga * item.jumlah;
+        count += item.jumlah;
       });
+
+      document.getElementById('total').textContent = total.toLocaleString();
+      document.getElementById('cart-count').textContent = count;
     }
 
-    // Toggle tampilan 1 bagian sesuai menu
-    document.querySelectorAll('.menu a').forEach(link => {
-      link.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-
-        e.preventDefault();
-        const id = href.substring(1); // buang tanda '#'
-        let target = document.getElementById(id);
-        let isSubProduk = false;
-
-        // Siapkan semua bagian yang akan dikontrol
-        const semuaBagian = [
-          ...document.querySelectorAll('main > section'),
-          document.getElementById('slider'),
-          document.getElementById('Profil-toko'),
-          document.getElementById('tentang-hubungi')
-        ];
-
-        // Jika submenu produk → tampilkan produk-list & sembunyikan produk lain
-        if (target && target.closest('#produk-list')) {
-          document.getElementById('produk-list').style.display = 'block';
-          document.querySelectorAll('#produk-list > div.produk').forEach(produk => {
-            produk.style.display = (produk.id === id) ? 'block' : 'none';
-          });
-          isSubProduk = true;
-          target = document.getElementById('produk-list');
-        }
-
-        // Jika kontak → tampilkan #tentang-hubungi
-        if (id === 'kontak') {
-          target = document.getElementById('tentang-hubungi');
-        }
-
-        // Jika pembayaran → hanya tampilkan checkout
-        if (id === 'pembayaran') {
-          target = document.getElementById('checkout');
-        }
-
-        const sudahAktif = target.classList.contains('tampil-aktif');
-
-        // Reset semua bagian
-        semuaBagian.forEach(sec => {
-          sec.style.display = 'none';
-          sec.classList.remove('tampil-aktif');
-        });
-
-        // Reset produk jika bukan submenu
-        if (!isSubProduk) {
-          document.querySelectorAll('#produk-list > div.produk').forEach(p => p.style.display = 'block');
-        }
-
-        if (!sudahAktif) {
-          target.style.display = 'block';
-          target.classList.add('tampil-aktif');
-          window.location.hash = href;
-        } else {
-          // Tampilkan semua bagian lagi
-          semuaBagian.forEach(sec => sec.style.display = '');
-
-          // Tampilkan semua produk kembali jika produk-list
-          if (target.id === 'produk-list') {
-            document.querySelectorAll('#produk-list > div.produk').forEach(p => p.style.display = 'block');
-          }
-        }
+    const tombolBeli = document.querySelectorAll('.btn-beli');
+    tombolBeli.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        const nama = document.querySelectorAll('.product h3')[i].textContent;
+        const hargaText = document.querySelectorAll('.product strong, .product span[style*="font-weight: bold"]')[i].textContent;
+        const harga = parseInt(hargaText.replace(/\D/g, ''));
+        tambahLangsungKeKeranjang(nama, harga);
+        toggleBagian('keranjang');
       });
     });
 
+    function keBeranda() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-</script>
+    function cariProduk() {
+      const keyword = document.getElementById('search-produk').value.toLowerCase();
+      const produkList = document.querySelectorAll('#produk .product');
+      let ketemu = false;
+
+      produkList.forEach(prod => {
+        const nama = prod.querySelector('h3').textContent.toLowerCase();
+        if (nama.includes(keyword)) {
+          prod.scrollIntoView({ behavior: 'smooth' });
+          ketemu = true;
+          return;
+        }
+      });
+
+      if (!ketemu) {
+        alert('Produk tidak ditemukan!');
+      }
+    }
+
+    function kePembayaran() {
+      toggleBagian('pembayaran');
+    }
+
+    function bukaPopupKeranjang() {
+      updatePopupKeranjang();
+      document.getElementById('popup-keranjang').style.display = 'flex';
+    }
+
+    function tutupPopupKeranjang() {
+      document.getElementById('popup-keranjang').style.display = 'none';
+    }
+
+    function updatePopupKeranjang() {
+      const list = document.getElementById('list-popup-keranjang');
+      list.innerHTML = '';
+      let total = 0;
+
+      keranjang.forEach((item, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.style.marginBottom = '0.5rem';
+
+        const nama = document.createElement('div');
+        nama.textContent = `${item.nama} x${item.jumlah} - Rp${(item.harga * item.jumlah).toLocaleString()}`;
+
+        const silang = document.createElement('span');
+        silang.innerHTML = '&times;';
+        silang.style.cursor = 'pointer';
+        silang.style.marginLeft = '10px';
+        silang.onclick = () => {
+          keranjang.splice(index, 1);
+          updateKeranjang();
+          updatePopupKeranjang();
+        };
+        nama.appendChild(silang);
+
+        const tombolCheckout = document.createElement('button');
+        tombolCheckout.textContent = 'Checkout';
+        tombolCheckout.onclick = () => toggleBagian('keranjang');
+        tombolCheckout.style.marginTop = '4px';
+
+        wrapper.appendChild(nama);
+        wrapper.appendChild(tombolCheckout);
+
+        list.appendChild(wrapper);
+        total += item.harga * item.jumlah;
+      });
+      document.getElementById('total-popup').textContent = total.toLocaleString();
+    }
+
+    function hapusDariKeranjang(index) {
+      keranjang.splice(index, 1);
+      updateKeranjang();
+      updatePopupKeranjang();
+    }
+
+    function tampilProduk(namaProduk) {
+      const semuaBagian = ["slider-container", "produk", "deskripsi", "kontak", "pembayaran", "keranjang"];
+      const produkSection = document.getElementById('produk');
+
+      if (bagianAktif === namaProduk) {
+        
+        semuaBagian.forEach(id => {
+          const elemen = document.getElementById(id);
+          if (elemen) elemen.style.display = 'block';
+        });
+        const semuaProduk = document.querySelectorAll('#produk .product');
+        semuaProduk.forEach(prod => prod.style.display = 'block');
+        bagianAktif = null;
+      } else {
+        
+        semuaBagian.forEach(id => {
+          const elemen = document.getElementById(id);
+          if (elemen) elemen.style.display = (id === 'produk') ? 'block' : 'none';
+        });
+
+        
+        const semuaProduk = document.querySelectorAll('#produk .product');
+        semuaProduk.forEach(prod => {
+          const nama = prod.querySelector('h3').textContent;
+          prod.style.display = nama.includes(namaProduk) ? 'block' : 'none';
+        });
+
+        bagianAktif = namaProduk;
+        produkSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function checkoutWhatsApp() {
+      document.getElementById('popup-pembayaran').style.display = 'flex';
+    }
+
+    function prosesPesanan(metode) {
+      const nama = document.getElementById('namaPembeli').value;
+      const wa = document.getElementById('waPembeli').value;
+      if (!nama || !wa) {
+        alert('Harap isi nama dan nomor WhatsApp.');
+        return;
+      }
+
+      let pesan = `Halo! Saya ingin memesan:%0A`;
+      keranjang.forEach(item => {
+        pesan += `- ${item.nama} x${item.jumlah} = Rp${(item.harga * item.jumlah).toLocaleString()}%0A`;
+      });
+
+      const total = keranjang.reduce((sum, i) => sum + i.harga * i.jumlah, 0);
+      pesan += `%0ATotal: Rp${total.toLocaleString()}%0ANama: ${nama}%0AWhatsApp: ${wa}`;
+
+      if (metode === 'whatsapp') {
+        window.open(`https://wa.me/6287873528852?text=${pesan}`, '_blank');
+      } else {
+        alert('Silakan transfer ke rekening Mandiri: 1570006455225 a.n MUSAEPI dan kirim bukti via WhatsApp.');
+        window.open(`https://wa.me/6287873528852?text=Halo, saya sudah transfer. Berikut bukti pembayarannya untuk pesanan:\n${pesan}`);
+      }
+
+      document.getElementById('popup-pembayaran').style.display = 'none';
+    }
+
+    document.getElementById('toggle-mode').addEventListener('click', function () {
+      const body = document.body;
+      const tombol = document.getElementById('toggle-mode');
+      
+      body.classList.toggle('dark-mode');
+
+      if (body.classList.contains('dark-mode')) {
+        tombol.textContent = "☀️";
+      } else {
+        tombol.textContent = "🌙";
+      }
+    });
+
+  </script>
 
 </body>
 </html>
