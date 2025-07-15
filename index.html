@@ -46,7 +46,7 @@
     "sameAs": [
       "mailto:atikkrudung@gmail.com",
       "tel:+6287873528852",
-      "https://www.instagram.com/atikupi"
+      "https://www.instagram.com/atikkrudung"
     ]
   }
   </script>
@@ -190,7 +190,7 @@
       text-decoration: none;
     }
     .submenu a:hover {
-      background: #1565c0;
+      background: #dfb6d8;
     }
     .dropdown:hover .submenu {
       display: block;
@@ -385,6 +385,69 @@
     .popup-pembayaran .close:hover {
       color: #000;
     }
+    .mini-slider-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      gap: 8px;
+      max-width: 90vw;
+      overflow: hidden;
+    }
+    .mini-slider {
+      display: flex;
+      overflow: hidden;
+      width: 160px;
+      justify-content: center;
+      position: relative;
+    }
+    .mini-slide {
+      flex: 0 0 100%;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      display: none;
+      justify-content: center;
+    }
+    .mini-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      display: flex;
+    }
+    .mini-slide img {
+      width: 150px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .mini-slide-btn {
+      background: #c08dbb;
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .mini-slide-btn.left {
+      left: 8px;
+    }
+    .mini-slide-btn.right {
+      right: 8px;
+    }
+    .mini-slide-btn:hover {
+      background: #b57ab4;
+    }
+    .mini-slider::-webkit-scrollbar {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -441,7 +504,18 @@
     <section id="produk" class="section">
       <div class="product">
         <h3>Bella Square</h3>
-        <img src="img/bsutama.jpg" alt="Bella Square" onclick="zoom('Bella Square')">
+        <div class="mini-slider-container">
+          <button class="mini-slide-btn left" onclick="prevProdukSlide(this)">❮</button>
+          <div class="mini-slider">
+            <div class="mini-slide active"><img src="img/bsutama.jpg" alt="Bella Square" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/bella1.jpg" alt="Bella Square" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/bella2.jpg" alt="Bella Square" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/bella3.jpg" alt="Bella Square" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/bella4.jpg" alt="Bella Square" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/bella5.jpg" alt="Bella Square" onclick="zoom(this)"></div>
+          </div>
+          <button class="mini-slide-btn right" onclick="nextProdukSlide(this)">❯</button>
+        </div>
         <p>Kerudung segi empat berbahan voal premium ini hadir dengan tekstur ringan dan tidak licin, sangat cocok untuk dipakai hariam maupun acara formal.</p>
         <p><strong>Harga: Rp 15.000</strong></p>
         <button onclick="tambahLangsungKeKeranjang('Bella Square', 15000)">Tambah ke Keranjang</button>
@@ -449,7 +523,18 @@
       </div>
       <div class="product">
         <h3>Paris Jadul</h3>
-        <img src="img/pjutama.jpg" alt="Paris Jadul" onclick="zoom('Paris Jadul')">
+        <div class="mini-slider-container">
+          <button class="mini-slide-btn left" onclick="prevProdukSlide(this)">❮</button>
+          <div class="mini-slider">
+            <div class="mini-slide active"><img src="img/pjutama.jpg" alt="Paris Jadul" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/pj1.jpg" alt="Paris Jadul" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/pj2.jpg" alt="Paris Jadul" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/pj3.jpg" alt="Paris Jadul" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/pj4.jpg" alt="Paris Jadul" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/pj5.jpg" alt="Paris Jadul" onclick="zoom(this)"></div>
+          </div>
+          <button class="mini-slide-btn right" onclick="nextProdukSlide(this)">❯</button>
+        </div>
         <p>Kerudung Paris Jadul merk Farisah dengan bahan katun paris tipis ringan,adem,dan mudah dibentuk. Dikenal sejak dulu karena kenyamanannya, kerudung ini jadi favorit banyak muslimah sejak dulu hingga sekarang.</p>
         <p><strong>Harga: Rp 20.000</strong></p>
         <button onclick="tambahLangsungKeKeranjang('Paris Jadul', 20000)">Tambah ke Keranjang</button>
@@ -457,7 +542,16 @@
       </div>
       <div class="product">
         <h3>Pashmina Viscose</h3>
-        <img src="img/pv1.jpg" alt="Pashmina Viscose" onclick="zoom('Pashmina Viscose')">
+        <div class="mini-slider-container">
+          <button class="mini-slide-btn left" onclick="prevProdukSlide(this)">❮</button>
+          <div class="mini-slider">
+            <div class="mini-slide active"><img src="img/pv1.jpg" alt="Pashmina Viscose" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/pv2.jpg" alt="Pashmina Viscose" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/pv3.jpg" alt="Pashmina Viscose" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/pv4.jpg" alt="Pashmina Viscose" onclick="zoom(this)"></div>
+          </div>
+          <button class="mini-slide-btn right" onclick="nextProdukSlide(this)">❯</button>
+        </div>
         <p>Pashmina berbahan viscose hadir dengan tekstur lembut dan ringan, memberikan kesan elegan tanpa usaha berlebihan. Cocok untuk kamu yang suka tampilan anggun tapi tetap elegan.</p>
         <p>
           <span style="text-decoration: line-through; color: gray; margin-right: 8px;">
@@ -472,7 +566,16 @@
       </div>
       <div class="product">
         <h3>Pashmina Silk</h3>
-        <img src="img/ps1.jpg" alt="Pashmina Silk" onclick="zoom('Pashmina Silk')">
+        <div class="mini-slider-container">
+          <button class="mini-slide-btn left" onclick="prevProdukSlide(this)">❮</button>
+          <div class="mini-slider">
+            <div class="mini-slide active"><img src="img/ps1.jpg" alt="Pashmina Silk" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/ps2.jpg" alt="Pashmina Silk" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/ps3.jpg" alt="Pashmina Silk" onclick="zoom(this)"></div>
+            <div class="mini-slide"><img src="img/ps4.jpg" alt="Pashmina Silk" onclick="zoom(this)"></div>
+          </div>
+          <button class="mini-slide-btn right" onclick="nextProdukSlide(this)">❯</button>
+        </div>
         <p>Pashmina bahan silk hadir dengan tampilan yang mengilap dan lembut, menjadikannya pilihan sempurna untuk acara spesial maupun tampilan formal sehari-hari.</p>
         <p><strong>Harga: Rp 35.000</strong></p>
         <button onclick="tambahLangsungKeKeranjang('Pashmina Silk', 35000)">Tambah ke Keranjang</button>
@@ -504,7 +607,7 @@
       </div>
       <div class="kontak-item">
         <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" />
-        <a href="https://www.instagram.com/atikupi?igsh=Z3RnYTNyZTAxeXk1" target="_blank">@atikupi</a>
+        <a href="https://www.instagram.com/atikkrudung?igsh=OG5wOGN2OHdlNng2" target="_blank">@atikkrudung</a>
       </div>
     </section>
 
@@ -590,16 +693,10 @@
       document.getElementById('popup').style.display = 'none';
     }
 
-    function zoom(nama) {
-      const produkList = document.querySelectorAll('#produk .product');
-      produkList.forEach(prod => {
-        const judul = prod.querySelector('h3').textContent;
-        if (judul === nama) {
-          const imgSrc = prod.querySelector('img').getAttribute('src');
-          document.getElementById('zoom-image').setAttribute('src', imgSrc);
-          document.getElementById('popup-zoom').style.display = 'flex';
-        }
-      }); 
+    function zoom(imgElement) {
+      const src = imgElement.getAttribute('src');
+      document.getElementById('zoom-image').setAttribute('src', src);
+      document.getElementById('popup-zoom').style.display = 'flex';
     }
 
     function tutupZoom() {
@@ -696,7 +793,19 @@
     });
 
     function keBeranda() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const semuaBagian = ["slider-container", "produk", "deskripsi", "kontak", "pembayaran", "keranjang"];
+      semuaBagian.forEach(id => {
+        const elemen = document.getElementById(id);
+        if (elemen) {
+          elemen.style.display = 'block';
+          elemen.classList.add('show');
+        }
+      });
+
+      bagianAktif = null;
+
+      // Scroll halus ke bagian header
+      document.querySelector('header').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function cariProduk() {
@@ -848,6 +957,41 @@
         tombol.textContent = "🌙";
       }
     });
+
+    const sliderIndexMap = new WeakMap();
+
+    function updateSlideFocus(slider) {
+      const slides = slider.querySelectorAll('.mini-slide');
+      let currentIndex = sliderIndexMap.get(slider) || 0;
+
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function nextProdukSlide(button) {
+      const slider = button.parentElement.querySelector('.mini-slider');
+      const slides = slider.querySelectorAll('.mini-slide');
+      let currentIndex = sliderIndexMap.get(slider) || 0;
+
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        sliderIndexMap.set(slider, currentIndex);
+        updateSlideFocus(slider);
+      } 
+    }
+
+    function prevProdukSlide(button) {
+      const slider = button.parentElement.querySelector('.mini-slider');
+      const slides = slider.querySelectorAll('.mini-slide');
+      let currentIndex = sliderIndexMap.get(slider) || 0;
+
+      if (currentIndex > 0) {
+        currentIndex--;
+        sliderIndexMap.set(slider, currentIndex);
+        updateSlideFocus(slider);
+      }
+    }
 
   </script>
 
