@@ -671,6 +671,15 @@
     </div>
   </div>
 
+  <div id="popup-warna" class="popup">
+    <div class="popup-content">
+      <h3>Pilih Warna</h3>
+      <div id="daftar-warna" style="margin: 1rem 0;"></div>
+      <button onclick="konfirmasiWarna()">Konfirmasi</button>
+      <span onclick="tutupPopupWarna()" style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.5rem; color: #333;">&times;</span>
+    </div>
+  </div>
+
   <div id="popup-pembayaran" class="popup-pembayaran">
     <div class="content">
       <span class="close" onclick="document.getElementById('popup-pembayaran').style.display='none'">&times;</span>
@@ -715,6 +724,7 @@
         }
       });
     };
+
     
     let keranjang = [];
     let bagianAktif = null;
@@ -740,8 +750,24 @@
       }
     }
 
+    const dataWarna = {
+      "Paris Jadul": [
+        "Hitam Paris", "Navy Paris", "Grey Paris", "Charcoal Paris", "Mocca Paris", "Peanut Paris"
+      ],
+      "Bella Square": [
+        "Hitam BS", "Lavender BS", "Broken White BS", "Cappucino BS", "Coksu BS"
+      ],
+      "Pashmina Viscose": [
+        "Coklat Tua Viscose", "Maroon Viscose", "Hitam Viscose"
+      ],
+      "Pashmina Silk": [
+        "Soft Gold Silk", "Soft Cream Silk", "Frappuccino Silk"
+      ]
+    };
+
     let produkDipilih = "";
     let hargaSementara = 0;
+    let warnaDipilih = "";
 
     function simpanPesanan() {
       keranjang.push({ nama: produkDipilih, harga: hargaSementara });
@@ -771,7 +797,7 @@
 
       keranjang.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = `${item.nama} x${item.jumlah}`;
+        li.textContent = `${item.nama} (${item.warna}) x${item.jumlah}`;
         list.appendChild(li);
         total += item.harga * item.jumlah;
         count += item.jumlah;
@@ -850,7 +876,7 @@
         wrapper.style.marginBottom = '0.5rem';
 
         const nama = document.createElement('div');
-        nama.textContent = `${item.nama} x${item.jumlah} - Rp${(item.harga * item.jumlah).toLocaleString()}`;
+        nama.textContent = `${item.nama} (${item.warna}) x${item.jumlah} - Rp${(item.harga * item.jumlah).toLocaleString()}`;
 
         const silang = document.createElement('span');
         silang.innerHTML = '&times;';
@@ -874,6 +900,7 @@
         list.appendChild(wrapper);
         total += item.harga * item.jumlah;
       });
+
       document.getElementById('total-popup').textContent = total.toLocaleString();
     }
 
@@ -929,7 +956,7 @@
 
       let pesan = `Halo! Saya ingin memesan:%0A`;
       keranjang.forEach(item => {
-        pesan += `- ${item.nama} x${item.jumlah} = Rp${(item.harga * item.jumlah).toLocaleString()}%0A`;
+        pesan += `- ${item.nama} (${item.warna}) x${item.jumlah} = Rp${(item.harga * item.jumlah).toLocaleString()}%0A`;
       });
 
       const total = keranjang.reduce((sum, i) => sum + i.harga * i.jumlah, 0);
@@ -991,6 +1018,52 @@
         sliderIndexMap.set(slider, currentIndex);
         updateSlideFocus(slider);
       }
+    }
+
+    function tambahLangsungKeKeranjang(nama, harga) {
+      produkDipilih = nama;
+      hargaSementara = harga;
+      warnaDipilih = "";
+      tampilPopupWarna(nama);
+    }
+
+    function tampilPopupWarna(nama) {
+      const daftar = document.getElementById("daftar-warna");
+      daftar.innerHTML = "";
+
+      const warnaList = dataWarna[nama] || [];
+      warnaList.forEach(warna => {
+        const label = document.createElement("label");
+        label.style.display = "block";
+        label.style.margin = "0.3rem 0";
+        label.innerHTML = `<input type="radio" name="warna" value="${warna}" style="margin-right: 8px;">${warna}`;
+        daftar.appendChild(label);
+      });
+
+      document.getElementById("popup-warna").style.display = "flex";
+    }
+
+    function konfirmasiWarna() {
+      const selected = document.querySelector('input[name="warna"]:checked');
+      if (!selected) {
+        alert("Silakan pilih warna terlebih dahulu.");
+        return;
+      }
+      warnaDipilih = selected.value;
+
+      const index = keranjang.findIndex(item => item.nama === produkDipilih && item.warna === warnaDipilih);
+      if (index !== -1) {
+        keranjang[index].jumlah += 1;
+      } else {
+        keranjang.push({ nama: produkDipilih, harga: hargaSementara, warna: warnaDipilih, jumlah: 1 });
+      }
+
+      updateKeranjang();
+      tutupPopupWarna();
+    }
+
+    function tutupPopupWarna() {
+      document.getElementById("popup-warna").style.display = "none";
     }
 
   </script>
