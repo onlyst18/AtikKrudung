@@ -1003,8 +1003,6 @@
         return;
       }
 
-      kirimKeSpreadsheet(nama, wa, metode);
-
       let pesan = `Halo Atik Krudung! Saya ingin memesan:%0A`;
       keranjang.forEach(item => {
         pesan += `- ${item.nama} (${item.warna}) x${item.jumlah} = Rp${(item.harga * item.jumlah).toLocaleString()}%0A`;
