@@ -766,12 +766,12 @@
     window.onload = () => {
       document.getElementById('popup-welcome').style.display = 'flex';
 
-      const awal = ["slider-container", "produk"];
-      awal.forEach(id => {
+      const semuaBagian = ["slider-container", "produk", "deskripsi", "kontak", "pembayaran", "keranjang", "testimoni"];
+      semuaBagian.forEach(id => {
         const elemen = document.getElementById(id);
         if (elemen) {
-        elemen.style.display = 'block';
-        elemen.classList.add('show');
+          elemen.style.display = 'block';
+          elemen.classList.add('show');
         }
       });
     };
@@ -1002,6 +1002,8 @@
         alert('Harap isi nama dan nomor WhatsApp.');
         return;
       }
+
+      kirimKeSpreadsheet(nama, wa, metode);
 
       let pesan = `Halo Atik Krudung! Saya ingin memesan:%0A`;
       keranjang.forEach(item => {
